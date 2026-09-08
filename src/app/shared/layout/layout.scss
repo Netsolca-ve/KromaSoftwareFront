@@ -1,0 +1,277 @@
+:host {
+  display: block;
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f8ff;
+  color: #151a28;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  display: flex;
+  width: 180px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 18px 11px 12px;
+  background: #fff;
+  box-shadow: 4px 0 15px rgb(35 45 80 / 4%);
+}
+
+.brand {
+  margin: 0 7px 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.branch-select {
+  width: 100%;
+  height: 24px;
+  margin-bottom: 17px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  background: #eef2ff;
+  color: #30384d;
+  font-size: 9px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.navigation a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 9px;
+  border-radius: 3px;
+  color: #303545;
+  font-size: 10px;
+  text-decoration: none;
+}
+
+.navigation a mat-icon {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}
+
+.navigation a:hover,
+.navigation a.active {
+  background: #111827;
+  color: #fff;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.mode-selector {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 28px;
+  padding: 0 7px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: #eef2ff;
+  color: #5c6478;
+  font-size: 8px;
+}
+
+.mode-selector span {
+  margin-right: auto;
+}
+
+.mode-selector button,
+.profile-button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  cursor: pointer;
+}
+
+.mode-selector button {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #5c6478;
+}
+
+.mode-selector mat-icon {
+  width: 13px;
+  height: 13px;
+  font-size: 13px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 6px 0;
+}
+
+.avatar {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+}
+
+.avatar mat-icon {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+}
+
+.user-profile strong,
+.user-profile small {
+  display: block;
+}
+
+.user-profile strong {
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.user-profile small {
+  margin-top: 2px;
+  color: #667085;
+  font-size: 8px;
+}
+
+.main-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+  padding: 0 22px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #edf0f7;
+  
+  background: #fafbff;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 250px;
+  height: 40px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background: #eef2ff;
+  color: #667085;
+}
+
+.search-box mat-icon {
+  width: 13px;
+  height: 13px;
+  margin-right: 6px;
+  font-size: 13px;
+}
+
+.search-box input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #303545;
+  font-size: 9px;
+}
+
+.search-box input::placeholder {
+  color: #858da0;
+}
+
+.new-appointment {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100px;
+  height: 40px;
+  margin-left: auto;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 3px;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 9px;
+}
+
+.new-appointment mat-icon {
+  width: 13px;
+  height: 13px;
+  font-size: 13px;
+}
+
+.profile-button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+}
+
+.profile-button mat-icon {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+}
+
+.page-content {
+  padding: 22px;
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 58px;
+    padding-inline: 8px;
+  }
+
+  .brand,
+  .branch-select,
+  .navigation span,
+  .mode-selector span,
+  .user-profile div:last-child {
+    display: none;
+  }
+
+  .navigation a {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .user-profile {
+    justify-content: center;
+    margin-inline: 0;
+  }
+
+  .topbar {
+    padding-inline: 12px;
+  }
+
+  .page-content {
+    padding: 12px;
+  }
+}

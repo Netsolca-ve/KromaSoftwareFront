@@ -1,0 +1,232 @@
+:host {
+  display: block;
+}
+
+.login-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 28px 10%;
+  background: #f7f8ff;
+  color: #111;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.topbar,
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  color: #3f4350;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.login-content {
+  width: min(100%, 330px);
+  margin: 38px auto 0;
+  text-align: center;
+}
+
+.brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 10px;
+  place-items: center;
+  background: #050505;
+  color: white;
+  font-size: 22px;
+}
+
+.brand-name {
+  font: 600 14px Arial, sans-serif;
+}
+
+.brand-name small {
+  margin-left: 5px;
+  color: #777;
+  font: 9px Georgia, serif;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+    display:flex;
+    justify-content:center;
+  margin: 22px 0 4px;
+  font: 600 17px Arial, sans-serif;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  font: 11px Arial, sans-serif;
+  color: #50515a;
+}
+
+.login-card {
+  padding: 25px;
+  background: white;
+  border-radius: 7px;
+  box-shadow: 0 8px 25px rgb(28 35 70 / 5%);
+  text-align: left;
+}
+
+label,
+.branch-heading,
+.password-heading {
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+
+.branch-heading,
+.password-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.branch-heading span,
+.password-heading a {
+  color: #435b83;
+  font-size: 8px;
+}
+
+select,
+input:not([type='checkbox']) {
+  width: 100%;
+  box-sizing: border-box;
+  height: 28px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 0;
+  background: #f0f3fc;
+  color: #20232b;
+  font: 11px Arial, sans-serif;
+  outline: none;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 32px;
+}
+
+.show-password {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: -4px 0 20px;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.remember input {
+  accent-color: #000;
+}
+
+.error-message {
+  margin: -8px 0 14px;
+  color: #b42318;
+  font: 10px Arial, sans-serif;
+}
+
+.forgot-password {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0 20px;
+}
+
+.forgot-password a {
+  color: #273b5f;
+  font-size: 10px;
+  text-decoration: underline;
+}
+
+.submit-button,
+.social-buttons button {
+  border: 0;
+  cursor: pointer;
+  font: 11px Arial, sans-serif;
+}
+
+.submit-button {
+  width: 100%;
+  height: 30px;
+  background: #050505;
+  color: white;
+}
+
+.submit-button span {
+  margin-left: 8px;
+  font-size: 17px;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 15px 0;
+  color: #555;
+  font-size: 8px;
+}
+
+.separator::before,
+.separator::after {
+  flex: 1;
+  height: 1px;
+  background: #e3e6ee;
+  content: '';
+}
+
+.social-buttons {
+  display: flex;
+  gap: 7px;
+}
+
+.social-buttons button {
+  flex: 1;
+  height: 29px;
+  background: #eff2fc;
+  color: #30333b;
+}
+
+.register {
+  margin-top: 18px;
+  font: 10px Arial, sans-serif;
+}
+
+.register a,
+.password-heading a {
+  color: #202f4b;
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 44px;
+}
+
+@media (max-width: 650px) {
+  .login-page {
+    padding: 22px 18px;
+  }
+
+  .topbar,
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

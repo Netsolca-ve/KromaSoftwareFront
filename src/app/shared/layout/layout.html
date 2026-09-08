@@ -1,0 +1,78 @@
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="brand">KROMA SOFTWARE</div>
+
+  
+
+    <nav class="navigation">
+      <a routerLink="/home" routerLinkActive="active">
+        <mat-icon>calendar_month</mat-icon>
+        <span>Agenda</span>
+      </a>
+
+      <a routerLink="/walk-ins">
+        <mat-icon>group</mat-icon>
+        <span>Cola Walk-ins</span>
+      </a>
+
+      <a routerLink="/payments">
+        <mat-icon>point_of_sale</mat-icon>
+        <span>Caja & Cobros</span>
+      </a>
+
+      <a routerLink="/services">
+        <mat-icon>content_cut</mat-icon>
+        <span>Clientes & Servicios</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="mode-selector">
+        <span>MODO</span>
+        <button type="button">
+          <mat-icon>light_mode</mat-icon>
+        </button>
+        <button type="button">
+          <mat-icon>dark_mode</mat-icon>
+        </button>
+      </div>
+
+      <div class="user-profile">
+        <div class="avatar">
+          <mat-icon>person</mat-icon>
+        </div>
+
+        <div>
+          <strong>Carlos Medina</strong>
+          <small>Master Barber</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-area">
+    <header class="topbar">
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+
+        <input
+          type="search"
+          placeholder="Buscar cita, cliente, ticket..."
+        />
+      </div>
+
+      <button class="new-appointment" type="button">
+        <mat-icon>add</mat-icon>
+        Nueva Cita
+      </button>
+
+      <button class="profile-button" type="button">
+        <mat-icon>person</mat-icon>
+      </button>
+    </header>
+
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
