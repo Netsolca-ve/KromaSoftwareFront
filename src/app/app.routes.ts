@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Layout } from './shared/layout/layout';
-import { Login } from './@core/auth/login/login';
+import { Login } from './pages/login/login';
 
 export const routes: Routes = [
      {
