@@ -225,18 +225,31 @@
 }
 
 .profile-button {
-  width: 24px;
-  height: 24px;
+  display: grid;
+  width: 34px;
+  height: 34px;
   padding: 0;
+  place-items: center;
+  border: 0;
   border-radius: 50%;
-  background: #000;
-  color: #fff;
+  background: #eef2ff;
+  color: #30384d;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
+
 .profile-button mat-icon {
-  width: 14px;
-  height: 14px;
-  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 22px;
+}
+
+
+.profile-button:hover {
+  background: #111827;
+  color: #fff;
 }
 
 .page-content {

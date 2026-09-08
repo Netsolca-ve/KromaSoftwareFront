@@ -1,15 +1,15 @@
 <div class="app-layout">
   <aside class="sidebar">
+    
     <div class="brand">KROMA SOFTWARE</div>
-
-  
-
+    
+    
     <nav class="navigation">
       <a routerLink="/home" routerLinkActive="active">
         <mat-icon>calendar_month</mat-icon>
         <span>Agenda</span>
       </a>
-
+      
       <a routerLink="/walk-ins">
         <mat-icon>group</mat-icon>
         <span>Cola Walk-ins</span>
@@ -20,9 +20,14 @@
         <span>Caja & Cobros</span>
       </a>
 
-      <a routerLink="/services">
+      <a routerLink="/barb-services">
         <mat-icon>content_cut</mat-icon>
         <span>Clientes & Servicios</span>
+      </a>
+
+      <a routerLink="/about">
+        <mat-icon>person</mat-icon>
+        <span>Empleados</span>
       </a>
     </nav>
 
@@ -61,13 +66,13 @@
         />
       </div>
 
-      <button class="new-appointment" type="button">
+      <button routerLink="/schedules" class="new-appointment" type="button">
         <mat-icon>add</mat-icon>
         Nueva Cita
       </button>
 
       <button class="profile-button" type="button">
-        <mat-icon>person</mat-icon>
+        <mat-icon>account_circle</mat-icon>
       </button>
     </header>
 

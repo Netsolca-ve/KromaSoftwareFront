@@ -23,7 +23,7 @@ footer {
 }
 
 .login-content {
-  width: min(100%, 330px);
+  width: 320px;
   margin: 38px auto 0;
   text-align: center;
 }
@@ -41,13 +41,9 @@ footer {
 
 .brand-name {
   font: 600 14px Arial, sans-serif;
-}
-
-.brand-name small {
-  margin-left: 5px;
-  color: #777;
-  font: 9px Georgia, serif;
-  letter-spacing: 0.08em;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 h1 {
@@ -58,12 +54,16 @@ h1 {
 }
 
 .subtitle {
+  display:flex;
+  justify-content:center;
+  align-items:center;
   margin: 0 0 24px;
   font: 11px Arial, sans-serif;
   color: #50515a;
 }
 
 .login-card {
+  width: 100%;
   padding: 25px;
   background: white;
   border-radius: 7px;
