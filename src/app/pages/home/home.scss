@@ -1,0 +1,597 @@
+:host {
+  display: block;
+  color: #151a28;
+}
+
+.agenda-page {
+  width: 100%;
+  min-width: 0;
+}
+
+.agenda-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 86px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8ebf3;
+}
+
+.week-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: #eef2ff;
+  color: #6d7893;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.agenda-toolbar h1 {
+  margin: 0;
+  max-width: 230px;
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.date-controls {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  border: 1px solid #edf0f7;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.date-controls button {
+  min-width: 38px;
+  height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-right: 1px solid #edf0f7;
+  background: transparent;
+  color: #30384d;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.date-controls button:last-child {
+  border-right: 0;
+}
+
+.date-controls button:hover {
+  background: #f1f4fc;
+}
+
+.agenda-legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #70798d;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.agenda-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dot,
+.barber-status {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot.black,
+.appointment-card.en-silla .dot {
+  background: #000;
+}
+
+.dot.blue {
+  background: #596a91;
+}
+
+.dot.gray {
+  background: #aeb4c0;
+}
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.barber-column {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #edf0f7;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgb(40 51 85 / 3%);
+}
+
+.barber-header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf0f7;
+}
+
+.avatar {
+  display: grid;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 7px;
+  background: #e6efff;
+  color: #253b65;
+  font-size: 13px;
+}
+
+.barber-header h2 {
+  margin: 0;
+  overflow: hidden;
+  color: #151a28;
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barber-header span:not(.barber-status) {
+  display: block;
+  margin-top: 3px;
+  color: #7b8498;
+  font-size: 8px;
+}
+
+.barber-status {
+  flex: 0 0 7px;
+  margin-left: auto;
+  background: #050505;
+}
+
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.appointment-card {
+  width: 100%;
+  min-height: 90px;
+  padding: 11px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #151a28;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.appointment-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(30 40 70 / 10%);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #68738a;
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.card-header span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.appointment-card h3 {
+  margin: 12px 0 16px;
+  overflow: hidden;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.service-details {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  color: #68738a;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.service-details span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-details strong {
+  flex: 0 0 auto;
+  color: inherit;
+  font-size: 8px;
+  font-weight: 400;
+}
+
+.appointment-card.en-silla {
+  background: #050505;
+  color: #fff;
+}
+
+.appointment-card.en-silla .card-header,
+.appointment-card.en-silla .service-details {
+  color: #d4d7df;
+}
+
+.appointment-card.confirmado {
+  background: #f5f7fc;
+}
+
+.appointment-card.completado {
+  background: #f5f7fc;
+  color: #647089;
+  opacity: 0.8;
+}
+
+.appointment-card.libre {
+  display: grid;
+  min-height: 38px;
+  place-items: center;
+  border: 1px dashed #cbd1dd;
+  background: #fff;
+  color: #68738a;
+}
+
+.free-slot {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+}
+
+.free-slot mat-icon {
+  width: 13px;
+  height: 13px;
+  font-size: 13px;
+}
+
+/* Mantiene cuatro columnas en escritorio y permite desplazarlas en pantallas estrechas. */
+@media (max-width: 1100px) {
+  .agenda-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .agenda-legend {
+    width: 100%;
+  }
+
+  .agenda-grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .agenda-toolbar {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .agenda-toolbar h1 {
+    font-size: 20px;
+  }
+
+  .date-controls {
+    margin-left: 0;
+  }
+
+  .agenda-legend {
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+
+  .agenda-grid {
+    grid-template-columns: repeat(4, minmax(235px, 1fr));
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .barber-column {
+    min-height: 420px;
+  }
+}
+
+.current-time {
+  display: block;
+  margin-top: 5px;
+  color: #7b8498;
+  font-size: 9px;
+}
+
+.create-button,
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 3px;
+  background: #08090c;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.create-button {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.create-button mat-icon,
+.add-barber-appointment mat-icon {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}
+
+.agenda-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0 2px;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  width: min(320px, 100%);
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid #e8ebf3;
+  border-radius: 3px;
+  background: #fff;
+  color: #788297;
+}
+
+.search-field mat-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  font-size: 15px;
+}
+
+.search-field input,
+.date-picker {
+  border: 0;
+  outline: 0;
+  color: #30384d;
+  font: inherit;
+  font-size: 10px;
+}
+
+.search-field input {
+  width: 100%;
+}
+
+.date-picker {
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid #e8ebf3;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.add-barber-appointment {
+  display: grid;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  padding: 0;
+  place-items: center;
+  border: 1px solid #e8ebf3;
+  border-radius: 50%;
+  background: #fff;
+  color: #58647c;
+  cursor: pointer;
+}
+
+.empty-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  min-height: 34px;
+  border: 1px dashed #d2d7e2;
+  border-radius: 3px;
+  background: transparent;
+  color: #7a8498;
+  cursor: pointer;
+  font-size: 9px;
+}
+
+.empty-slot mat-icon {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+}
+
+.empty-agenda {
+  padding: 44px 16px;
+  color: #7b8498;
+  text-align: center;
+  font-size: 12px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  overflow-y: auto;
+  padding: 20px;
+  place-items: center;
+  background: rgb(15 20 35 / 42%);
+}
+
+.appointment-form {
+  width: min(560px, 100%);
+  padding: 24px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgb(15 20 35 / 22%);
+}
+
+.form-heading,
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #788297;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.form-heading h2 {
+  margin: 5px 0 20px;
+  color: #151a28;
+  font-size: 21px;
+}
+
+.close-button {
+  align-self: flex-start;
+  border: 0;
+  background: transparent;
+  color: #7b8498;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #5f6b82;
+  font-size: 10px;
+}
+
+.form-grid input,
+.form-grid select {
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 0 9px;
+  border: 1px solid #dfe4ee;
+  border-radius: 3px;
+  outline: 0;
+  background: #fff;
+  color: #20283a;
+  font: inherit;
+  font-size: 11px;
+}
+
+.form-error {
+  margin: 14px 0 0;
+  color: #b42318;
+  font-size: 10px;
+}
+
+.form-actions {
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.secondary-button {
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid #dfe4ee;
+  border-radius: 3px;
+  background: #fff;
+  color: #5f6b82;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+@media (max-width: 1100px) {
+  .create-button {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .agenda-tools {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .search-field,
+  .date-picker {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.api-error {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 14px;
+  border: 1px solid #f2c8c5;
+  border-radius: 4px;
+  background: #fff5f4;
+  color: #a33a32;
+  font-size: 11px;
+}
+
+.api-error button {
+  margin-left: auto;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #a33a32;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+}

@@ -1,1 +1,19 @@
-<p>about works!</p>
+<section class="module-page">
+    <header class="module-heading">
+        <div><span class="eyebrow">EQUIPO DEL LOCAL</span>
+            <h1>Empleados</h1>
+            <p>Gestiona los barberos y sus sillones asignados.</p>
+        </div><strong class="count-badge">{{ employees.length }} barberos</strong>
+    </header>
+    <form class="entry-form" (ngSubmit)="addEmployee()"><input [(ngModel)]="name" name="name"
+            placeholder="Nombre del barbero" required><input [(ngModel)]="chair" name="chair" type="number" min="1"
+            placeholder="Sillón"><button type="submit"><mat-icon>person_add</mat-icon>Agregar empleado</button></form>
+    <div class="employee-grid">
+        <article class="employee-card" *ngFor="let employee of employees">
+            <div class="employee-avatar">{{ employee.name.charAt(0) }}</div>
+            <div class="employee-info"><strong>{{ employee.name }}</strong><small>{{ employee.role }} · Sillón {{
+                    employee.chair }}</small></div><button type="button" [class.inactive]="!employee.active"
+                (click)="toggleEmployee(employee)">{{ employee.active ? 'Activo' : 'Inactivo' }}</button>
+        </article>
+    </div>
+</section>

@@ -1,1 +1,30 @@
-<p>barb-services works!</p>
+<section class="module-page">
+    <header class="module-heading">
+        <div><span class="eyebrow">CATÁLOGO</span>
+            <h1>Clientes & Servicios</h1>
+            <p>Administra tu cartera de clientes y los servicios del local.</p>
+        </div>
+    </header>
+    <div class="tabs"><button type="button" [class.active]="tab === 'clients'"
+            (click)="tab = 'clients'">Clientes</button><button type="button" [class.active]="tab === 'services'"
+            (click)="tab = 'services'">Servicios</button></div>@if (tab === 'clients') {<form class="entry-form"
+        (ngSubmit)="addClient()"><input [(ngModel)]="clientName" name="clientName" placeholder="Nombre del cliente"
+            required><input [(ngModel)]="clientPhone" name="clientPhone" placeholder="Teléfono"><button
+            type="submit"><mat-icon>person_add</mat-icon>Agregar cliente</button></form>
+    <div class="catalog-grid">
+        <article class="catalog-card" *ngFor="let client of clients">
+            <div class="round-icon"><mat-icon>person</mat-icon></div>
+            <div><strong>{{ client.name }}</strong><small>{{ client.phone }} · {{ client.visits }} visitas</small></div>
+        </article>
+    </div>} @else {<form class="entry-form" (ngSubmit)="addService()"><input [(ngModel)]="serviceName"
+            name="serviceName" placeholder="Nombre del servicio" required><input [(ngModel)]="servicePrice"
+            name="servicePrice" type="number" placeholder="Precio" required><button
+            type="submit"><mat-icon>add</mat-icon>Agregar servicio</button></form>
+    <div class="catalog-grid">
+        <article class="catalog-card" *ngFor="let service of services">
+            <div class="round-icon"><mat-icon>content_cut</mat-icon></div>
+            <div><strong>{{ service.name }}</strong><small>{{ service.duration }} minutos · {{ service.price |
+                    currency:'CLP':'symbol':'1.0-0' }}</small></div>
+        </article>
+    </div>}
+</section>

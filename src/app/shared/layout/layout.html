@@ -66,18 +66,42 @@
         />
       </div>
 
-      <button routerLink="/schedules" class="new-appointment" type="button">
+      <button class="new-appointment" type="button" (click)="openNewAppointment()">
         <mat-icon>add</mat-icon>
         Nueva Cita
       </button>
 
-      <button class="profile-button" type="button">
+      <button class="profile-button" type="button" (click)="showProfile = true" aria-label="Abrir perfil">
         <mat-icon>account_circle</mat-icon>
       </button>
     </header>
 
     <main class="page-content">
-      <router-outlet></router-outlet>
-    </main>
+    @if (loadingService.loading()) {
+      <div class="page-loading">
+        <mat-spinner diameter="42"></mat-spinner>
+        <span>Cargando...</span>
+      </div>
+    }
+
+    <router-outlet></router-outlet>
+  </main>
   </div>
 </div>
+
+@if (showProfile) {
+  <div class="modal-backdrop" (click)="showProfile = false">
+    <section class="profile-modal" (click)="$event.stopPropagation()" aria-labelledby="profile-title">
+      <button class="modal-close" type="button" (click)="showProfile = false" aria-label="Cerrar">×</button>
+      <div class="profile-avatar"><mat-icon>person</mat-icon></div>
+      <span class="profile-role">MASTER BARBER</span>
+      <h2 id="profile-title">Carlos Medina</h2>
+      <p class="profile-email">carlos.medina@kromasoftware.com</p>
+      <div class="profile-details">
+        <span><mat-icon>phone</mat-icon> +56 9 5555 5555</span>
+        <span><mat-icon>location_on</mat-icon> Sucursal Palermo</span>
+      </div>
+      <button class="profile-action" type="button" (click)="showProfile = false">Cerrar perfil</button>
+    </section>
+  </div>
+}
