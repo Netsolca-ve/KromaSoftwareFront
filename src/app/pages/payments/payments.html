@@ -1,23 +1,35 @@
 <section class="module-page">
-    <header class="module-heading">
-        <div><span class="eyebrow">CONTROL DIARIO</span>
-            <h1>Caja & Cobros</h1>
-            <p>Registra los pagos de los servicios realizados.</p>
-        </div>
-        <div class="total-box"><small>Total del día</small><strong>{{ total | currency:'CLP':'symbol':'1.0-0'
-                }}</strong></div>
-    </header>
-    <form class="entry-form" (ngSubmit)="registerPayment()"><input [(ngModel)]="clientName" name="clientName"
-            placeholder="Cliente" required><input [(ngModel)]="amount" name="amount" type="number" min="1"
-            placeholder="Monto" required><select [(ngModel)]="method" name="method">
-            <option>Efectivo</option>
-            <option>Tarjeta</option>
-            <option>Transferencia</option>
-        </select><button type="submit"><mat-icon>add</mat-icon>Registrar pago</button></form>
-    <div class="list-card">
-        <div class="table-head"><span>Cliente</span><span>Monto</span><span>Método</span><span>Hora</span></div>
-        <article class="payment-row" *ngFor="let payment of payments"><strong>{{ payment.client }}</strong><span>{{
-                payment.amount | currency:'CLP':'symbol':'1.0-0' }}</span><span>{{ payment.method }}</span><small>{{
-                payment.time }}</small></article>
+  <header class="module-heading">
+    <div>
+      <h1>Caja & Cobros</h1>
     </div>
+    <div class="total-box">
+      <small>Total del día</small><strong>${{ total }} USDT</strong>
+    </div>
+  </header>
+  <form class="entry-form" (ngSubmit)="registerPayment()">
+    <input [(ngModel)]="clientName" name="clientName" placeholder="Cliente" required /><input
+      [(ngModel)]="amount"
+      name="amount"
+      type="number"
+      min="0.01"
+      step="0.01"
+      placeholder="Monto en USDT"
+      required
+    /><select [(ngModel)]="method" name="method">
+      <option>Efectivo</option>
+      <option>Tarjeta</option>
+      <option>Transferencia</option></select
+    ><button type="submit"><mat-icon>add</mat-icon>Registrar pago</button>
+  </form>
+  <div class="list-card">
+    <div class="table-head">
+      <span>Cliente</span><span>Monto</span><span>Método</span><span>Hora</span>
+    </div>
+    <article class="payment-row" *ngFor="let payment of payments">
+      <strong>{{ payment.client }}</strong
+      ><span>${{ payment.amount }} USDT</span><span>{{ payment.method }}</span
+      ><small>{{ payment.time }}</small>
+    </article>
+  </div>
 </section>

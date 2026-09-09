@@ -38,6 +38,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./pages/barb-services/barb-services').then((m) => m.BarbServices),
             },
             {
+                path: 'client',
+                loadComponent: () => import('./pages/client/client').then((m) => m.Client),
+            },
+            {
                 path: 'schedules',
                 loadComponent: () => import('./pages/schedules/schedules').then((m) => m.Schedules),
             }

@@ -14,8 +14,8 @@ export class Payments {
   amount: number | null = null;
   method = 'Efectivo';
   payments = [
-    { client: 'Ricardo Morales', amount: 18500, method: 'Tarjeta', time: '09:45' },
-    { client: 'Gonzalo Valenzuela', amount: 14000, method: 'Efectivo', time: '10:35' },
+    { client: 'Ricardo Morales', amount: 10, method: 'Tarjeta', time: '09:45' },
+    { client: 'Gonzalo Valenzuela', amount: 5, method: 'Efectivo', time: '10:35' },
   ];
 
   get total(): number { return this.payments.reduce((sum, payment) => sum + payment.amount, 0); }

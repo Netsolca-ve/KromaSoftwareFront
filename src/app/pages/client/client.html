@@ -1,0 +1,21 @@
+<section class="module-page">
+  <header class="module-heading">
+    <div>
+      <h1>Clientes</h1>
+    </div>
+  </header>
+  <form class="entry-form" (ngSubmit)="addClient()">
+    <input [(ngModel)]="clientName" name="clientName" placeholder="Nombre del cliente" required />
+    <input [(ngModel)]="clientPhone" name="clientPhone" placeholder="Teléfono" />
+    <button type="submit"><mat-icon>person_add</mat-icon>Agregar cliente</button>
+  </form>
+  <div class="catalog-grid">
+    <article class="catalog-card" *ngFor="let client of clients">
+      <div class="round-icon"><mat-icon>person</mat-icon></div>
+      <div>
+        <strong>{{ client.name }}</strong
+        ><small>{{ client.phone }} · {{ client.visits }} visitas</small>
+      </div>
+    </article>
+  </div>
+</section>
