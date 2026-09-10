@@ -1,7 +1,9 @@
 <section class="agenda-page">
+  <!-- BARRA SUPERIOR (Toolbar, Navegación de Fechas y Vistas) -->
   <div class="agenda-toolbar">
     <div>
       <h1>{{ periodLabel | titlecase }}</h1>
+      <span class="current-time">Hora actual: {{ currentTime }}</span>
     </div>
 
     <div class="date-controls">
@@ -17,124 +19,46 @@
       <button type="button" [class.active]="viewMode === 'week'" (click)="selectView('week')">
         Semana
       </button>
-      <button type="button" [class.active]="viewMode === 'month'" (click)="selectView('month')">
-        Mes
-      </button>
     </div>
 
-    <button type="button" class="create-button" (click)="openNewAppointment()">
-      <mat-icon>add</mat-icon>
-      Nueva cita
+    <!-- Si tienes un servicio para abrir la creación por botón, o puedes omitirlo si prefieres -->
+    <button type="button" class="create-button" (click)="calendarComponent?.getApi()?.today()">
+      <mat-icon>event_available</mat-icon>
+      Ir a hoy
     </button>
   </div>
 
+  <!-- BARRA DE BÚSQUEDA Y FILTRO DE FECHAS -->
   <div class="agenda-tools">
     <label class="search-field">
       <mat-icon>search</mat-icon>
       <input [(ngModel)]="searchTerm" type="search" placeholder="Buscar cliente o servicio" />
     </label>
-    <input [(ngModel)]="selectedDate" (change)="loadAgenda()" type="date" class="date-picker" />
+    <input 
+      [(ngModel)]="selectedDate" 
+      (change)="loadAgenda()" 
+      type="date" 
+      class="date-picker" 
+    />
   </div>
 
-  <section class="calendar-panel" aria-label="Agenda CalendarJS">
+  <!-- PANEL DEL CALENDARIO (FullCalendar) -->
+  <section class="calendar-panel" aria-label="Agenda FullCalendar">
     <div class="calendar-heading">
       <div>
         <h2>
           {{
-            viewMode === 'month'
-              ? 'Calendario mensual'
-              : viewMode === 'day'
-                ? 'Agenda del día'
-                : 'Agenda semanal'
+            viewMode === 'day'
+              ? 'Agenda del día'
+              : 'Agenda semanal'
           }}
         </h2>
       </div>
     </div>
-    <div #schedule class="calendarjs-schedule" [class.calendar-hidden]="viewMode === 'month'"></div>
-    <div
-      #monthCalendar
-      class="calendarjs-month"
-      [class.calendar-hidden]="viewMode !== 'month'"
-    ></div>
+
+    <!-- Contenedor donde se monta FullCalendar de forma nativa -->
+    <div class="calendar-container">
+      <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+    </div>
   </section>
-
-  <div class="modal-backdrop" *ngIf="showAppointmentForm" (click)="showAppointmentForm = false">
-    <form
-      class="appointment-form"
-      (ngSubmit)="saveAppointment()"
-      (click)="$event.stopPropagation()"
-    >
-      <div class="form-heading">
-        <div>
-          <span class="eyebrow">GESTIÓN DE AGENDA</span>
-          <h2>{{ editingAppointmentId ? 'Editar cita' : 'Nueva cita' }}</h2>
-        </div>
-        <button
-          type="button"
-          class="close-button"
-          (click)="showAppointmentForm = false"
-          aria-label="Cerrar"
-        >
-          ×
-        </button>
-      </div>
-
-      <div class="form-grid">
-        <label
-          >Cliente<input
-            [(ngModel)]="form.clientName"
-            name="clientName"
-            required
-            placeholder="Nombre completo"
-        /></label>
-        <label
-          >Teléfono<input [(ngModel)]="form.clientPhone" name="clientPhone" placeholder="+56 9..."
-        /></label>
-        <label
-          >Barbero<select [(ngModel)]="form.barberId" name="barberId" required>
-            <option *ngFor="let barber of barbers" [value]="barber.id">{{ barber.name }}</option>
-          </select></label
-        >
-        <label
-          >Servicio<input
-            [(ngModel)]="form.services"
-            name="services"
-            required
-            placeholder="Corte de cabello"
-        /></label>
-        <label>Fecha<input [(ngModel)]="form.date" name="date" type="date" required /></label>
-        <label
-          >Precio (USDT)<input
-            [(ngModel)]="form.price"
-            name="price"
-            type="number"
-            min="0"
-            step="0.01"
-            required
-        /></label>
-        <label
-          >Inicio<input [(ngModel)]="form.startTime" name="startTime" type="time" required
-        /></label>
-        <label>Fin<input [(ngModel)]="form.endTime" name="endTime" type="time" required /></label>
-        <label
-          >Estado
-          <select [(ngModel)]="form.status" name="status">
-            <option value="confirmado">Confirmada</option>
-            <option value="en-silla">En silla</option>
-            <option value="completado">Completada</option>
-            <option value="cancelado">Cancelada</option>
-            <option value="libre">Libre</option>
-          </select>
-        </label>
-      </div>
-
-      <p class="form-error" *ngIf="formError">{{ formError }}</p>
-      <div class="form-actions">
-        <button type="button" class="secondary-button" (click)="showAppointmentForm = false">
-          Cancelar
-        </button>
-        <button type="submit" class="primary-button">Guardar cita</button>
-      </div>
-    </form>
-  </div>
 </section>
