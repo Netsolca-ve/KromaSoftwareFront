@@ -1,9 +1,8 @@
 <section class="agenda-page">
-  <!-- BARRA SUPERIOR (Toolbar, Navegación de Fechas y Vistas) -->
+  <!-- BARRA SUPERIOR -->
   <div class="agenda-toolbar">
     <div>
       <h1>{{ periodLabel | titlecase }}</h1>
-      <span class="current-time">Hora actual: {{ currentTime }}</span>
     </div>
 
     <div class="date-controls">
@@ -21,44 +20,35 @@
       </button>
     </div>
 
-    <!-- Si tienes un servicio para abrir la creación por botón, o puedes omitirlo si prefieres -->
-    <button type="button" class="create-button" (click)="calendarComponent?.getApi()?.today()">
+    <!-- Botón temporal de hoy, puedes cambiarlo si necesitas otro comportamiento -->
+    <button type="button" class="create-button" (click)="goToToday()">
       <mat-icon>event_available</mat-icon>
       Ir a hoy
     </button>
   </div>
 
-  <!-- BARRA DE BÚSQUEDA Y FILTRO DE FECHAS -->
+  <!-- HERRAMIENTAS -->
   <div class="agenda-tools">
     <label class="search-field">
       <mat-icon>search</mat-icon>
       <input [(ngModel)]="searchTerm" type="search" placeholder="Buscar cliente o servicio" />
     </label>
-    <input 
-      [(ngModel)]="selectedDate" 
-      (change)="loadAgenda()" 
-      type="date" 
-      class="date-picker" 
-    />
+    <input [(ngModel)]="selectedDate" (change)="loadAgenda()" type="date" class="date-picker" />
   </div>
 
-  <!-- PANEL DEL CALENDARIO (FullCalendar) -->
+  <!-- CALENDARIO -->
   <section class="calendar-panel" aria-label="Agenda FullCalendar">
     <div class="calendar-heading">
       <div>
         <h2>
-          {{
-            viewMode === 'day'
-              ? 'Agenda del día'
-              : 'Agenda semanal'
-          }}
+          {{ viewMode === 'day' ? 'Agenda del día' : 'Agenda semanal' }}
         </h2>
       </div>
     </div>
 
-    <!-- Contenedor donde se monta FullCalendar de forma nativa -->
     <div class="calendar-container">
-      <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+      <full-calendar #calendar [options]="calendarOptions" [events]="(events$ | async) || []">
+      </full-calendar>
     </div>
   </section>
 </section>

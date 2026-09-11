@@ -1,1 +1,52 @@
-<p>create-appointments works!</p>
+<form class="appointment-form-inner">
+  <div class="form-heading">
+    <div>
+      <h2>Nueva cita</h2>
+    </div>
+    <button type="button" class="close-button" (click)="closeDialog()" aria-label="Cerrar">×</button>
+  </div>
+
+  <div class="form-grid">
+    <label>Cliente
+      <input [(ngModel)]="form.clientName" name="clientName" required placeholder="Nombre completo" />
+    </label>
+    <label>Teléfono
+      <input [(ngModel)]="form.clientPhone" name="clientPhone" placeholder="+56 9..." />
+    </label>
+    <label>Barbero
+      <select [(ngModel)]="form.barberId" name="barberId" required>
+        <option *ngFor="let barber of barbers" [value]="barber.id">{{ barber.name }}</option>
+      </select>
+    </label>
+    <label>Servicio
+      <input [(ngModel)]="form.services" name="services" required placeholder="Corte de cabello" />
+    </label>
+    <label>Fecha
+      <input [(ngModel)]="form.date" name="date" type="date" required />
+    </label>
+    <label>Precio (USDT)
+      <input [(ngModel)]="form.price" name="price" type="number" min="0" step="0.01" required />
+    </label>
+    <label>Inicio
+      <input [(ngModel)]="form.startTime" name="startTime" type="time" required />
+    </label>
+    <label>Fin
+      <input [(ngModel)]="form.endTime" name="endTime" type="time" required />
+    </label>
+    <label>Estado
+      <select [(ngModel)]="form.status" name="status">
+        <option value="confirmado">Confirmada</option>
+        <option value="en-silla">En silla</option>
+        <option value="completado">Completada</option>
+        <option value="cancelado">Cancelada</option>
+        <option value="libre">Libre</option>
+      </select>
+    </label>
+  </div>
+
+  <p class="form-error" *ngIf="formError">{{ formError }}</p>
+  <div class="form-actions">
+    <button type="button" class="secondary-button" (click)="closeDialog()">Cancelar</button>
+    <button type="submit" class="primary-button" (click)="saveAppointment() ">Guardar cita</button>
+  </div>
+</form>

@@ -1,1 +1,33 @@
-<p>update-appointments works!</p>
+<form class="appointment-form-inner" >
+  <div class="form-heading">
+    <div>
+      <h2>Editar cita</h2>
+    </div>
+    <button type="button" class="close-button" (click)="closeDialog()">×</button>
+  </div>
+
+  <div class="form-grid">
+    <label>Cliente
+      <input [(ngModel)]="form.clientName" name="clientName" required placeholder="Nombre completo" />
+    </label>
+    
+    <label>Fecha
+      <input [(ngModel)]="form.date" name="date" type="date" required />
+    </label>
+    
+    <label>Inicio
+      <input [(ngModel)]="form.startTime" name="startTime" type="time" required />
+    </label>
+    
+    <label>Fin
+      <input [(ngModel)]="form.endTime" name="endTime" type="time" required />
+    </label>
+  </div>
+
+  <p class="form-error" *ngIf="formError">{{ formError }}</p>
+  
+  <div class="form-actions">
+    <button type="button" class="secondary-button" (click)="closeDialog()">Cancelar</button>
+    <button type="submit" class="primary-button" (click)="saveAppointment()">Actualizar cita</button>
+  </div>
+</form>

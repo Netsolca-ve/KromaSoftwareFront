@@ -1,0 +1,111 @@
+/* Contenedor principal del formulario */
+.appointment-form-inner {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  /* Material ya pone sombra, pero reforzamos con la tuya */
+  box-shadow: 0 20px 60px rgb(15 20 35 / 22%);
+  box-sizing: border-box;
+}
+
+.form-heading,
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #788297;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.form-heading h2 {
+  margin: 5px 0 20px;
+  color: #151a28;
+  font-size: 21px;
+}
+
+.close-button {
+  align-self: flex-start;
+  border: 0;
+  background: transparent;
+  color: #7b8498;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #5f6b82;
+  font-size: 15px;
+}
+
+.form-grid input,
+.form-grid select {
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 0 9px;
+  border: 1px solid #dfe4ee;
+  border-radius: 3px;
+  outline: 0;
+  background: #fff;
+  color: #20283a;
+  font: inherit;
+  font-size: 13px;
+}
+
+.form-error {
+  margin: 14px 0 0;
+  color: #b42318;
+  font-size: 10px;
+}
+
+.form-actions {
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.secondary-button {
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid #dfe4ee;
+  border-radius: 3px;
+  background: #fff;
+  color: #5f6b82;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 3px;
+  background: #08090c;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
