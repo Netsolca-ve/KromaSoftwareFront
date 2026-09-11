@@ -3,19 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 @Component({
-  imports: [CommonModule, FormsModule,MatDialogModule],
+  imports: [CommonModule, FormsModule, MatDialogModule],
   selector: 'app-create-appointments',
   styleUrl: './create-appointments.scss',
   templateUrl: './create-appointments.html',
 })
 export class CreateAppointments implements OnInit {
-  // Inyección de dependencias sin constructor
   private readonly dialogRef = inject(MatDialogRef<CreateAppointments>);
   public readonly data = inject(MAT_DIALOG_DATA);
 
   form: any = {};
   formError = '';
-  
+
   barbers = [
     { id: 'barber-1', name: 'Carlos Medina' },
     { id: 'barber-2', name: 'Mateo Rojas' }
@@ -40,8 +39,7 @@ export class CreateAppointments implements OnInit {
       this.formError = 'Completa cliente, servicio y barbero.';
       return;
     }
-    
-    // Cierra el modal enviando un objeto con la acción y los datos
+
     this.dialogRef.close({ action: 'create', appointment: this.form });
   }
 

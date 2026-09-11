@@ -1,18 +1,158 @@
-:host { display: block; }
-.module-page { max-width: 900px; }
-.module-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
-.eyebrow { color: #77839b; font-size: 9px; letter-spacing: 1px; }
-h1 { margin: 8px 0 5px; font-size: 28px; }
-p { margin: 0; color: #77839b; font-size: 12px; }
-.count-badge { padding: 9px 12px; border-radius: 4px; background: #eef2ff; color: #455579; font-size: 11px; }
-.entry-form { display: flex; gap: 10px; margin-bottom: 16px; }
-input, select { height: 38px; padding: 0 10px; border: 1px solid #e0e5ef; border-radius: 3px; background: #fff; color: #30384d; }
-input { flex: 1; }
-button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 0; border-radius: 3px; background: #111827; color: #fff; cursor: pointer; font-size: 10px; }
-.entry-form button { padding: 0 13px; }
-mat-icon { width: 15px; height: 15px; font-size: 15px; }
-.list-card { padding: 8px 16px; border: 1px solid #e8ebf3; border-radius: 6px; background: #fff; }
-.list-row { display: flex; align-items: center; gap: 13px; min-height: 62px; border-bottom: 1px solid #edf0f6; }
-.list-row:last-child { border-bottom: 0; }
-.list-row div { flex: 1; }.list-row strong, .list-row small { display: block; }.list-row strong { font-size: 12px; }.list-row small { margin-top: 4px; color: #77839b; font-size: 10px; }.number { display: grid; width: 26px; height: 26px; place-items: center; border-radius: 50%; background: #eef2ff; color: #536587; font-size: 11px; }.list-row button { width: 28px; height: 28px; border-radius: 50%; background: #eef7f0; color: #23733b; }.empty-state { padding: 20px 0; text-align: center; }
-@media (max-width: 620px) { .module-heading, .entry-form { align-items: stretch; flex-direction: column; }.entry-form button { min-height: 38px; } }
+:host {
+    display: block;
+}
+
+.module-page {
+    max-width: 900px;
+}
+
+.module-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.eyebrow {
+    color: #77839b;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 8px 0 5px;
+    font-size: 28px;
+}
+
+p {
+    margin: 0;
+    color: #77839b;
+    font-size: 12px;
+}
+
+.count-badge {
+    padding: 9px 12px;
+    border-radius: 4px;
+    background: #eef2ff;
+    color: #455579;
+    font-size: 11px;
+}
+
+.entry-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+input,
+select {
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #e0e5ef;
+    border-radius: 3px;
+    background: #fff;
+    color: #30384d;
+}
+
+input {
+    flex: 1;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 0;
+    border-radius: 3px;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.entry-form button {
+    padding: 0 13px;
+}
+
+mat-icon {
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
+}
+
+.list-card {
+    padding: 8px 16px;
+    border: 1px solid #e8ebf3;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.list-row {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 62px;
+    border-bottom: 1px solid #edf0f6;
+}
+
+.list-row:last-child {
+    border-bottom: 0;
+}
+
+.list-row div {
+    flex: 1;
+}
+
+.list-row strong,
+.list-row small {
+    display: block;
+}
+
+.list-row strong {
+    font-size: 12px;
+}
+
+.list-row small {
+    margin-top: 4px;
+    color: #77839b;
+    font-size: 10px;
+}
+
+.number {
+    display: grid;
+    width: 26px;
+    height: 26px;
+    place-items: center;
+    border-radius: 50%;
+    background: #eef2ff;
+    color: #536587;
+    font-size: 11px;
+}
+
+.list-row button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #eef7f0;
+    color: #23733b;
+}
+
+.empty-state {
+    padding: 20px 0;
+    text-align: center;
+}
+
+@media (max-width: 620px) {
+
+    .module-heading,
+    .entry-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .entry-form button {
+        min-height: 38px;
+    }
+}

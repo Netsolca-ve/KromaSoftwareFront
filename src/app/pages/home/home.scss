@@ -589,23 +589,28 @@
     flex-wrap: wrap;
     gap: 12px;
   }
+
   .date-controls {
     margin-left: 0;
   }
+
   .agenda-legend {
     order: 3;
   }
+
   .view-selector {
     order: 4;
   }
+
   .create-button {
     margin-left: auto;
   }
 }
+
 .calendar-panel {
   display: flex;
   flex-direction: column;
-  height: 650px; 
+  height: 650px;
   padding: 16px;
   box-sizing: border-box;
   border: 1px solid #edf0f7;
@@ -629,7 +634,7 @@
 
 .calendar-container {
   flex: 1;
-  min-height: 0; 
+  min-height: 0;
   height: 100%;
 }
 
@@ -639,8 +644,8 @@
 
 :host ::ng-deep {
   .fc {
-    --fc-border-color: #edf0f7; 
-    --fc-today-bg-color: #f8fafc; 
+    --fc-border-color: #edf0f7;
+    --fc-today-bg-color: #f8fafc;
     --fc-neutral-bg-color: #fff;
     --fc-event-text-color: #fff;
     font-family: inherit;
@@ -674,7 +679,8 @@
   .fc-timegrid-event:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(30, 40, 70, 0.15);
-    z-index: 5 !important; /* Para que al hacer hover se sobreponga a otras citas */
+    z-index: 5 !important;
+    /* Para que al hacer hover se sobreponga a otras citas */
   }
 
   /* Textos dentro del evento */
@@ -688,7 +694,8 @@
     font-size: 10px;
     font-weight: 400;
     line-height: 1.25;
-    white-space: normal; /* Permite que el texto baje a la siguiente línea */
+    white-space: normal;
+    /* Permite que el texto baje a la siguiente línea */
   }
 
   /* Hover sobre las celdas vacías (indica dónde vas a crear la cita) */
@@ -712,15 +719,19 @@
     flex-wrap: wrap;
     gap: 12px;
   }
+
   .date-controls {
     margin-left: 0;
   }
+
   .agenda-legend {
     order: 3;
   }
+
   .view-selector {
     order: 4;
   }
+
   .create-button {
     margin-left: auto;
   }
@@ -730,30 +741,38 @@
   .agenda-toolbar {
     align-items: flex-start;
   }
-  .agenda-toolbar > :first-child {
+
+  .agenda-toolbar> :first-child {
     width: 100%;
   }
+
   .agenda-toolbar h1 {
     max-width: none;
     font-size: 21px;
   }
+
   .date-controls {
     order: 2;
   }
+
   .view-selector {
     order: 3;
   }
+
   .agenda-legend {
     display: none;
   }
+
   .create-button {
     margin-left: 0;
     order: 4;
   }
+
   .calendar-panel {
     height: 500px;
     padding: 10px;
   }
+
   .calendar-heading {
     margin-bottom: 8px;
   }

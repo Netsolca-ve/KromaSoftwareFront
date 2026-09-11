@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  NgZone,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  effect,
-  inject,
-} from '@angular/core';
+import {AfterViewInit,Component,NgZone,OnDestroy,OnInit,ViewChild,inject} from '@angular/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular';
@@ -18,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Appointment, AppointmentStatus, Barber } from '../../@core/interfaces/agenda.model';
+import { AppointmentStatus, Barber } from '../../@core/interfaces/agenda.model';
 import { UiModalService } from '../../@core/services/ui-modal.service';
 import { CreateAppointments } from './components/create-appointments/create-appointments';
 import { UpdateAppointments } from './components/update-appointments/update-appointments';
@@ -32,26 +23,19 @@ type CalendarView = 'day' | 'week' | 'month';
   templateUrl: './home.html',
 })
 export class Home implements OnInit, AfterViewInit, OnDestroy {
-  // 1. INYECCIÓN DE DEPENDENCIAS
+  @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
   private readonly uiModalService = inject(UiModalService);
   private readonly zone = inject(NgZone);
   private readonly dialog = inject(MatDialog);
-  
-  @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
-
-  // 2. OBSERVABLES DEL CALENDARIO
   private readonly dateClick$ = new Subject<any>();
   private readonly dateSelect$ = new Subject<any>();
   private readonly eventClick$ = new Subject<any>();
   private readonly destroy$ = new Subject<void>();
 
-  // 3. EL ESTADO REACTIVO (BehaviorSubject)
+
+
   selectedDate = this.toDateInput(new Date());
-  
-  // Guardamos la información en una "caja reactiva"
   private readonly barbersSubject = new BehaviorSubject<Barber[]>(this.createLocalBarbers(this.selectedDate));
-  
-  // Transformamos esa caja en un flujo de eventos que el HTML va a escuchar en tiempo real
   public readonly events$: Observable<any[]> = this.barbersSubject.pipe(
     map(barbers => this.scheduleEvents(barbers))
   );
@@ -61,8 +45,6 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   searchTerm = '';
   private clockTimer?: number;
   private lastNewAppointmentRequest = 0;
-
-  // Configuración de FullCalendar (Ya NO tiene la propiedad "events: []")
   calendarOptions: CalendarOptions = {
     plugins: [timeGridPlugin, interactionPlugin],
     initialView: 'timeGridWeek',
@@ -72,7 +54,7 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     slotMinTime: '06:00:00',
     slotMaxTime: '22:00:00',
     height: '100%',
-    selectable: true, 
+    selectable: true,
 
     dateClick: (arg) => this.dateClick$.next(arg),
     select: (arg) => this.dateSelect$.next(arg),
@@ -82,8 +64,6 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.updateClock();
     this.clockTimer = window.setInterval(() => this.updateClock(), 1000);
-
-    // ESCUCHAR CLICKS Y ABRIR MODALES
     this.dateClick$.pipe(takeUntil(this.destroy$)).subscribe((arg) => {
       this.zone.run(() => {
         const dialogRef = this.dialog.open(CreateAppointments, {
@@ -131,7 +111,6 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  // --- NAVEGACIÓN Y CONTROLES ---
   moveDate(days: number): void {
     const date = this.parseDate(this.selectedDate);
     date.setDate(date.getDate() + (this.viewMode === 'week' ? days * 7 : days));
@@ -153,37 +132,27 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     this.updateCalendarState();
   }
 
-  // 4. EL CEREBRO: PROCESA LOS DATOS Y EMITE EL NUEVO ESTADO
   private processDialogResult(result: { action: string, appointment: any }): void {
-    // 1. Obtenemos el estado actual
     const currentBarbers = this.barbersSubject.getValue();
     const data = result.appointment;
     const barber = currentBarbers.find(b => b.id === data.barberId);
-    
     if (!barber) return;
-
-    // 2. Modificamos los datos
     if (result.action === 'create') {
       barber.appointments.push({ ...data, id: `local-${Date.now()}` });
-    } 
+    }
     else if (result.action === 'update') {
       const index = barber.appointments.findIndex(item => item.id === data.id);
       if (index >= 0) {
         barber.appointments[index] = { ...data };
       }
     }
-
-    // 3. Emitimos el nuevo arreglo modificado. El pipe async del HTML hará el resto automáticamente.
     this.barbersSubject.next([...currentBarbers]);
   }
-
-  // --- LÓGICA DE RENDERIZADO DEL CALENDARIO ---
   private updateCalendarState(): void {
-    // Ya no actualizamos events aquí, solo navegamos en fecha/vista
     if (this.calendarComponent) {
       const api = this.calendarComponent.getApi();
-      api.gotoDate(this.selectedDate); 
-      
+      api.gotoDate(this.selectedDate);
+
       const fcView = this.viewMode === 'day' ? 'timeGridDay' : 'timeGridWeek';
       if (api.view.type !== fcView) {
         api.changeView(fcView);
@@ -191,13 +160,12 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  // Ahora recibe el arreglo directamente del Observable
   private scheduleEvents(barbers: Barber[]): any[] {
     return barbers.flatMap((barber) =>
       barber.appointments.map((appointment) => ({
         id: appointment.id,
         title: `${appointment.clientName} - ${appointment.services}`,
-        start: `${appointment.date}T${appointment.startTime}:00`, 
+        start: `${appointment.date}T${appointment.startTime}:00`,
         end: `${appointment.date}T${appointment.endTime}:00`,
         backgroundColor: this.appointmentColor(appointment.status),
         borderColor: this.appointmentColor(appointment.status),
@@ -210,7 +178,6 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  // --- HELPERS Y FORMATOS ---
   get dateLabel(): string {
     return new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }).format(this.parseDate(this.selectedDate));
   }
