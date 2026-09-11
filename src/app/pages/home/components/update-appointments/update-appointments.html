@@ -27,6 +27,11 @@
   <p class="form-error" *ngIf="formError">{{ formError }}</p>
   
   <div class="form-actions">
+    
+    <button type="button" class="secondary-button" style="color: #b42318; border-color: #fca5a5;" (click)="deleteAppointment()">
+      Eliminar cita
+    </button>
+
     <button type="button" class="secondary-button" (click)="closeDialog()">Cancelar</button>
     <button type="submit" class="primary-button" (click)="saveAppointment()">Actualizar cita</button>
   </div>

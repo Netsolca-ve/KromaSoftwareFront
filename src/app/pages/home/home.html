@@ -1,5 +1,5 @@
 <section class="agenda-page">
-  <!-- BARRA SUPERIOR -->
+  
   <div class="agenda-toolbar">
     <div>
       <h1>{{ periodLabel | titlecase }}</h1>
@@ -20,14 +20,12 @@
       </button>
     </div>
 
-    <!-- Botón temporal de hoy, puedes cambiarlo si necesitas otro comportamiento -->
     <button type="button" class="create-button" (click)="goToToday()">
       <mat-icon>event_available</mat-icon>
       Ir a hoy
     </button>
   </div>
 
-  <!-- HERRAMIENTAS -->
   <div class="agenda-tools">
     <label class="search-field">
       <mat-icon>search</mat-icon>

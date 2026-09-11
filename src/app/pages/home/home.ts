@@ -146,6 +146,14 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
         barber.appointments[index] = { ...data };
       }
     }
+    else if (result.action === 'delete') {
+      const index = barber.appointments.findIndex(item => item.id === data.id);
+      if (index >= 0) {
+        // Sacamos la cita del arreglo
+        barber.appointments.splice(index, 1); 
+      }
+    }
+
     this.barbersSubject.next([...currentBarbers]);
   }
   private updateCalendarState(): void {

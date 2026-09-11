@@ -2,7 +2,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteAppointments } from '../confirm-delete-appointments/confirm-delete-appointments';
 @Component({
   imports: [CommonModule, FormsModule,MatDialogModule],
   selector: 'app-update-appointments',
@@ -12,6 +13,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 export class UpdateAppointments implements OnInit {
   private readonly dialogRef = inject(MatDialogRef<UpdateAppointments>);
   public readonly data = inject(MAT_DIALOG_DATA);
+  private readonly dialog = inject(MatDialog);
 
   form: any = {};
   formError = '';
@@ -43,6 +45,8 @@ export class UpdateAppointments implements OnInit {
     };
   }
 
+  
+
   saveAppointment() {
     console.log('Form data before validation:', this.form);
     if (!this.form.clientName.trim() || !this.form.services.trim()) {
@@ -57,4 +61,23 @@ export class UpdateAppointments implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
+
+  deleteAppointment() {
+    // Aquí cambias "TuComponenteDeConfirmacion" por el nombre real de tu componente
+    const confirmRef = this.dialog.open(ConfirmDeleteAppointments, {
+      width: '400px',
+      panelClass: 'custom-dialog-container',
+      // Si tu modal de confirmación necesita datos, pásalos aquí
+      data: { message: '¿Estás seguro de que deseas cancelar esta cita?' } 
+    });
+
+    confirmRef.afterClosed().subscribe(result => {
+      // Si el usuario confirmó la eliminación (asumiendo que tu modal devuelve true)
+      if (result) {
+        // Cerramos ESTE modal de editar enviando la acción 'delete' al home
+        this.dialogRef.close({ action: 'delete', appointment: this.form });
+      }
+    });
+  }
 }
+

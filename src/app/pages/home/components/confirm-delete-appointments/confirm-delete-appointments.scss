@@ -1,0 +1,59 @@
+.confirmation-dialog {
+  padding: 24px;
+  color: #20283a;
+  background: #fff;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+p {
+  margin: 20px 0;
+  color: #5f6b82;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.close-button {
+  border: 0;
+  background: transparent;
+  color: #7b8498;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancel-button,
+.delete-button {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancel-button {
+  border: 1px solid #dfe4ee;
+  background: #fff;
+  color: #5f6b82;
+}
+
+.delete-button {
+  border: 1px solid #b42318;
+  background: #b42318;
+  color: #fff;
+}

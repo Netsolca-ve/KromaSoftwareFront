@@ -1,0 +1,27 @@
+<section class="confirmation-dialog">
+  <header class="dialog-header">
+    <h2>Eliminar cita</h2>
+
+    <button
+      type="button"
+      class="close-button"
+      aria-label="Cerrar"
+      (click)="cancel()">
+      ×
+    </button>
+  </header>
+
+  <p>
+    {{ data.message || '¿Estás seguro de que deseas eliminar esta cita?' }}
+  </p>
+
+  <footer class="dialog-actions">
+    <button type="button" class="cancel-button" (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button type="button" class="delete-button" (click)="confirm()">
+      Eliminar cita
+    </button>
+  </footer>
+</section>
