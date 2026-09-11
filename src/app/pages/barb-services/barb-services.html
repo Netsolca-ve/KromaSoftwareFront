@@ -5,27 +5,15 @@
     </div>
   </header>
   <form class="entry-form" (ngSubmit)="addService()">
-    <input
-      [(ngModel)]="serviceName"
-      name="serviceName"
-      placeholder="Nombre del servicio"
-      required
-    /><input
-      [(ngModel)]="servicePrice"
-      name="servicePrice"
-      type="number"
-      min="0"
-      step="0.01"
-      placeholder="Precio en USDT"
-      required
-    /><button type="submit"><mat-icon>add</mat-icon>Agregar servicio</button>
+    <input [(ngModel)]="serviceName" name="serviceName" placeholder="Nombre del servicio" required /><input
+      [(ngModel)]="servicePrice" name="servicePrice" type="number" min="0" step="0.01" placeholder="Precio en USDT"
+      required /><button type="submit"><mat-icon>add</mat-icon>Agregar servicio</button>
   </form>
   <div class="catalog-grid">
     <article class="catalog-card" *ngFor="let service of services">
       <div class="round-icon"><mat-icon>content_cut</mat-icon></div>
       <div>
-        <strong>{{ service.name }}</strong
-        ><small>{{ service.duration }} minutos · ${{ service.price }} USDT</small>
+        <strong>{{ service.name }}</strong><small>{{ service.duration }} minutos · ${{ service.price }} USDT</small>
       </div>
     </article>
   </div>

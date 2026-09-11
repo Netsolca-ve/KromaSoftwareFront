@@ -11,20 +11,16 @@
   </form>
   <div class="employee-grid">
     @for (employee of employees; track employee.name) {
-      <article class="employee-card">
-        <div class="employee-avatar">{{ employee.name.charAt(0) }}</div>
-        <div class="employee-info">
-          <strong>{{ employee.name }}</strong>
-          <small>{{ employee.role }}</small>
-        </div>
-        <button
-          type="button"
-          [class.inactive]="!employee.active"
-          (click)="toggleEmployee(employee)"
-        >
-          {{ employee.active ? 'Activo' : 'Inactivo' }}
-        </button>
-      </article>
+    <article class="employee-card">
+      <div class="employee-avatar">{{ employee.name.charAt(0) }}</div>
+      <div class="employee-info">
+        <strong>{{ employee.name }}</strong>
+        <small>{{ employee.role }}</small>
+      </div>
+      <button type="button" [class.inactive]="!employee.active" (click)="toggleEmployee(employee)">
+        {{ employee.active ? 'Activo' : 'Inactivo' }}
+      </button>
+    </article>
     }
   </div>
 </section>

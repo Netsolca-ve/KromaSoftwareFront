@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Appointment, Barber } from '../interfaces/agenda.model';
-import { environments } from '../../environments/environments';
+import { environments } from '../../../environments/environments';
 
 export type AppointmentPayload = Omit<Appointment, 'id'>;
 
