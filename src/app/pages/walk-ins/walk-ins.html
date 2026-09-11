@@ -1,9 +1,8 @@
 <section class="module-page">
   <header class="module-heading">
     <div>
-      <h1>Cola Walk-ins</h1>
+      <h1>Walk-ins</h1>
     </div>
-    <strong class="count-badge">{{ queue.length }} esperando</strong>
   </header>
   <form class="entry-form" (ngSubmit)="addToQueue()">
     <input
@@ -11,11 +10,14 @@
       name="clientName"
       placeholder="Nombre del cliente"
       required
-    /><select [(ngModel)]="service" name="service">
+    />
+    <select [(ngModel)]="service" name="service">
       <option>Corte clásico</option>
       <option>Corte & Barba</option>
-      <option>Perfilado</option></select
-    ><button type="submit"><mat-icon>person_add</mat-icon>Agregar a la cola</button>
+      <option>Perfilado</option>
+      </select
+    >
+    <button type="submit"><mat-icon>person_add</mat-icon>Agregar a la cola</button>
   </form>
   <div class="list-card">
     <article class="list-row" *ngFor="let client of queue; let index = index">
