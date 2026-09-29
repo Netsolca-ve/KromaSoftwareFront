@@ -17,7 +17,7 @@ export class CreateAppointments implements OnInit {
 
   barbers = [
     { id: 'barber-1', name: 'Carlos Medina' },
-    { id: 'barber-2', name: 'Mateo Rojas' }
+    { id: 'barber-2', name: 'Mateo Rojas' },
   ];
 
   ngOnInit() {
@@ -27,10 +27,18 @@ export class CreateAppointments implements OnInit {
       clientPhone: '',
       services: '',
       date: this.data.date || (this.data.start ? this.data.start.split('T')[0] : ''),
-      startTime: this.data.start ? (this.data.start.includes('T') ? this.data.start.split('T')[1].substring(0, 5) : this.data.start) : '09:00',
-      endTime: this.data.end ? (this.data.end.includes('T') ? this.data.end.split('T')[1].substring(0, 5) : this.data.end) : '09:45',
+      startTime: this.data.start
+        ? this.data.start.includes('T')
+          ? this.data.start.split('T')[1].substring(0, 5)
+          : this.data.start
+        : '09:00',
+      endTime: this.data.end
+        ? this.data.end.includes('T')
+          ? this.data.end.split('T')[1].substring(0, 5)
+          : this.data.end
+        : '09:45',
       price: 0,
-      status: 'confirmado'
+      status: 'confirmado',
     };
   }
 
