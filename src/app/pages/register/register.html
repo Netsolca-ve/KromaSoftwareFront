@@ -1,0 +1,86 @@
+<main class="login-page">
+  <header class="topbar"></header>
+
+  <section class="login-content">
+    <form class="login-card" [formGroup]="RegisterForm" (ngSubmit)="RegisterForm.submit()">
+      <div class="brand-mark">✂</div>
+      <div class="brand-name">KROMA SOFTWARE</div>
+      <div class="subtitle">Regístrate para crear tu cuenta</div>
+      <h1>Registrarse</h1>
+      <div class="branch-heading"></div>
+        <label for="email">NOMBRE</label>
+      <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        formControlName="nombre"
+      />
+       <label for="email">APELLIDO</label>
+      <input
+        id="apellido"
+        name="apellido"
+        type="text"
+        formControlName="apellido"
+      />
+
+
+      <label for="email">CORREO ELECTRÓNICO</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="admin@noblecut.com"
+      />
+
+      <div class="password-heading">
+        <label for="password">CONTRASEÑA</label>
+      </div>
+
+      <div class="password-field">
+        <input
+          id="password"
+          name="password"
+          formcontrolname="contraseña"
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder=""
+        />
+
+        <button type="button" class="show-password" (click)="showPassword = !showPassword">
+          <mat-icon>
+            {{ showPassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </button>
+        <div class="password-heading">
+        <label for="confirmPassword">CONFIRMAR CONTRASEÑA</label>
+        </div>
+      </div>
+
+      <div class="password-field">
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          formcontrolname="confirmPassword"
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder=""
+          [(ngModel)]="confirmPassword"
+        />
+
+       
+
+
+
+
+
+
+       
+      </div>
+      
+      @if (errorMessage) {
+        <p class="error-message">{{ errorMessage }}</p>
+      }
+      
+      <button class="submit-button" type="submit">Crear Cuenta <span>→</span></button>
+           
+    </form>
+  </section>
+</main>

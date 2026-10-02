@@ -13,6 +13,10 @@ export const routes: Routes = [
         component: Login,
     },
     {
+        path: 'register',
+        loadComponent: () => import('./pages/register/register').then((m) => m.Register),
+    },
+    {
         path: '',
         component: Layout,
         children: [
@@ -20,6 +24,7 @@ export const routes: Routes = [
                 path: 'home',
                 loadComponent: () => import('./pages/home/home').then((m) => m.Home),
             },
+            
             {
                 path: 'payments',
                 loadComponent: () => import('./pages/payments/payments').then((m) => m.Payments),
