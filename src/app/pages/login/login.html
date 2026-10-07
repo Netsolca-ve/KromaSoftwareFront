@@ -2,7 +2,7 @@
   <header class="topbar"></header>
 
   <section class="login-content">
-    <form class="login-card" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" class="login-card" (ngSubmit)="onLogin()">
       <div class="brand-mark">✂</div>
       <div class="brand-name">KROMA SOFTWARE</div>
       <div class="subtitle">Inicia sesión para acceder a tu cuenta</div>
@@ -15,7 +15,7 @@
         name="email"
         type="email"
         placeholder="admin@noblecut.com"
-        [(ngModel)]="email"
+        formControlName="correo"
       />
 
       <div class="password-heading">
@@ -28,7 +28,7 @@
           name="password"
           [type]="showPassword ? 'text' : 'password'"
           placeholder="••••••••"
-          [(ngModel)]="password"
+          formControlName="contrasena"
         />
 
         <button type="button" class="show-password" (click)="showPassword = !showPassword">
@@ -39,9 +39,9 @@
 
        
       </div>
-      <mat-checkbox class="remember" name="rememberSession" [(ngModel)]="rememberSession">
+      <!-- <mat-checkbox  [ngModelOptions]="{ standalone: true }" class="remember" name="rememberSession" [(ngModel)]="rememberSession">
         Recordar sesión en este equipo
-      </mat-checkbox>
+      </mat-checkbox> -->
       
       @if (errorMessage) {
         <p class="error-message">{{ errorMessage }}</p>
@@ -52,9 +52,7 @@
       <div class="forgot-password">
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
-      <div class="register">
-        <a href="register">¿No tienes cuenta? Regístrate</a>
-      </div>
+      
     </form>
   </section>
 </main>

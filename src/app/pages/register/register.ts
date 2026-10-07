@@ -1,5 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl,ReactiveFormsModule, FormGroup, FormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  ReactiveFormsModule,
+  FormGroup,
+  FormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +22,7 @@ import { RegisterForm } from '../../@core/interfaces/registerFomr';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule, 
+    MatCheckboxModule,
     ReactiveFormsModule,
   ],
   selector: 'app-register',
@@ -25,47 +32,52 @@ import { RegisterForm } from '../../@core/interfaces/registerFomr';
 export class Register {
   private router = inject(Router);
   private fb = inject(FormBuilder);
+  private registerService = inject(RegisterServices);
   confirmPassword = '';
   showPassword = false;
   errorMessage = '';
   rememberSession = false;
-  
-      RegisterForm: FormGroup<RegisterForm> = this.fb.group({
-      Nombre: new FormControl('', [Validators.required]),
-      Apellido: new FormControl('', [Validators.required]),
-      Correo: new FormControl('', [Validators.required, Validators.email]),
-      contraseña: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(16),
-      ]),
-      ConfirmarContraseña: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(16),
-      ]),
-    });
-  
 
-
-    onsubmit() {
-      const userData = this.RegisterForm.value;
-      if (userData.contraseña !== userData.ConfirmarContraseña) {
-        this.errorMessage = 'Las contraseñas no coinciden';
-        return;
-      }
-      const registerService = inject(RegisterServices);
-      registerService.registerUser(userData).subscribe(
-        (response) => {
-          console.log('Usuario registrado:', response);
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          console.error('Error al registrar usuario:', error);
-          this.errorMessage = 'Error al registrar usuario. Por favor, inténtalo de nuevo.';
-        }
-      );
-    }
-
+  RegisterForm: FormGroup<RegisterForm> = this.fb.nonNullable.group({
+    nombre: ['', [Validators.required]],
+    apellido: ['', [Validators.required]],
+    telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+    correo: ['', [Validators.required, Validators.email]],
+    rol: ['', [Validators.required]],
+    contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
+    confirmarContraseña: [
+      '',
+      [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
+    ],
+  });
+  cargarDatos() {
+    this.registerService.obtenertodoslosuser().subscribe(
+      (response) => {
+        console.log('Usuarios obtenidos:', response);
+      },
+      (error) => {
+        console.error('Error al obtener usuarios:', error);
+      },
+    );
   }
 
+  onsubmit(): void {
+    // this.cargarDatos();
+
+    const userData = this.RegisterForm.value;
+    if (userData.contrasena !== userData.confirmarContraseña) {
+      this.errorMessage = 'Las contraseñas no coinciden';
+      return;
+    }
+    this.registerService.registerUser(userData).subscribe(
+      (response) => {
+        console.log('Usuario registrado:', response);
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('Error al registrar usuario:', error);
+        this.errorMessage = 'Error al registrar usuario. Por favor, inténtalo de nuevo.';
+      },
+    );
+  }
+}

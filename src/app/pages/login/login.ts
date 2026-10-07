@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
-
+import { Auth } from '../../@core/services/auth';
+import { Validators } from '@angular/forms';
 @Component({
   imports: [
     FormsModule,
@@ -14,49 +15,51 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule, 
-  ],
+    MatCheckboxModule,
+    ReactiveFormsModule
+],
   selector: 'app-login',
   styleUrl: './login.scss',
   templateUrl: './login.html',
 })
 export class Login {
-  email = '';
-  password = '';
+ private fb = inject(FormBuilder);
+ private authService = inject(Auth);
+ private router = inject(Router);
+   confirmPassword = '';
   showPassword = false;
   errorMessage = '';
   rememberSession = false;
 
-  constructor(private router: Router) {
-    this.email = localStorage.getItem('rememberedEmail') ?? '';
-    this.rememberSession =
-      localStorage.getItem('rememberSession') === 'true';
+
+
+
+ loginForm = this.fb.group({
+
+  correo:[ ['', Validators.required, Validators.email]],
+  contrasena: [['', Validators.required]],
+
+ })
+
+
+ onLogin()
+{
+  if(this.loginForm.valid)
+  {
+    this.authService.login(this.loginForm.value as any).subscribe({
+      next: (response) => {
+        console.log('Login successful:', response);
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+        this.router.navigate(['/login']);
+      },
+    })
+       
   }
+}
+  
 
-  login(): void {
-    this.errorMessage = '';
 
-    if (!this.email || !this.password) {
-      this.errorMessage = 'Completa tu correo y contraseña.';
-      return;
-    }
-
-    if (
-      this.email === 'admin@kromasoft.com' &&
-      this.password === '123456'
-    ) {
-      if (this.rememberSession) {
-        localStorage.setItem('rememberedEmail', this.email);
-        localStorage.setItem('rememberSession', 'true');
-      } else {
-        localStorage.removeItem('rememberedEmail');
-        localStorage.removeItem('rememberSession');
-      }
-
-      this.router.navigate(['/home']);
-      return;
-    }
-
-    this.errorMessage = 'El correo o la contraseña son incorrectos.';
-  }
 }
