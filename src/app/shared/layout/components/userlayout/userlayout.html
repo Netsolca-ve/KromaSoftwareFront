@@ -1,0 +1,54 @@
+@if (auth.currentUser(); as user) {
+  <div class="user-card-header">
+    <div class="user-avatar">
+      <mat-icon>person</mat-icon>
+    </div>
+
+    <div class="user-heading">
+      <h2>{{ user.nombre }} {{ user.apellido }}</h2>
+      <span>{{ user.rol }}</span>
+    </div>
+  </div>
+
+  <div class="user-details">
+    <div class="user-detail">
+      <mat-icon>mail</mat-icon>
+      <div>
+        <small>Correo electrónico</small>
+        <strong>{{ user.correo }}</strong>
+      </div>
+    </div>
+
+    @if (user.telefono) {
+      <div class="user-detail">
+        <mat-icon>phone</mat-icon>
+        <div>
+          <small>Teléfono</small>
+          <strong>{{ user.telefono }}</strong>
+        </div>
+      </div>
+    }
+
+    @if (user.fecha_registro) {
+      <div class="user-detail">
+        <mat-icon>calendar_today</mat-icon>
+        <div>
+          <small>Fecha de registro</small>
+          <strong>{{ user.fecha_registro | date: 'dd/MM/yyyy' }}</strong>
+        </div>
+      </div>
+    }
+  </div>
+
+  <a class="edit-user-button" routerLink="/edit-user">
+    <mat-icon>edit</mat-icon>
+    Editar perfil
+  </a>
+
+  <button class="logout-button" type="button" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Cerrar sesión
+  </button>
+} @else {
+  <p class="empty-user">No hay una sesión activa.</p>
+}

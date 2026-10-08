@@ -1,0 +1,83 @@
+<section class="edit-user-page">
+  <div class="edit-user-header">
+    <div>
+      <span class="eyebrow">Mi cuenta</span>
+      <h1>Editar perfil</h1>
+      <p>Actualiza los datos de tu usuario.</p>
+    </div>
+  </div>
+
+  <!-- Evaluamos la Signal para asegurarnos de que hay un usuario -->
+  @if (currentUser()) {
+    
+    <!-- Nos aseguramos de que el formulario ya se haya inicializado en el ngOnInit -->
+    @if (editForm) {
+      <form class="edit-user-card" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" autocomplete="given-name" />
+            @if (editForm.get('nombre')?.hasError('required')) {
+              <mat-error>El nombre es obligatorio.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido" autocomplete="family-name" />
+            @if (editForm.get('apellido')?.hasError('required')) {
+              <mat-error>El apellido es obligatorio.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput type="email" formControlName="correo" autocomplete="email" />
+            @if (editForm.get('correo')?.hasError('required')) {
+              <mat-error>El correo es obligatorio.</mat-error>
+            } @else if (editForm.get('correo')?.hasError('email')) {
+              <mat-error>Escribe un correo válido.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput type="tel" formControlName="telefono" autocomplete="tel" />
+          </mat-form-field>
+
+          <!-- Agregamos el campo de contraseña que estaba en el TS pero faltaba en tu HTML -->
+          <mat-form-field appearance="outline">
+            <mat-label>Nueva Contraseña </mat-label>
+            <input matInput type="password" formControlName="contrasena" autocomplete="new-password"/>
+          </mat-form-field>
+
+        </div>
+
+        @if (errorMessage) {
+          <p class="form-message error-message">{{ errorMessage }}</p>
+        }
+
+        @if (successMessage) {
+          <p class="form-message success-message">{{ successMessage }}</p>
+        }
+
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="logout()">Cerrar sesión</button>
+          <!-- Asegúrate de tener la función cancel() en tu TS, o usa routerLink="/ruta-deseada" -->
+          <button mat-stroked-button type="button" (click)="cancel()">Cancelar</button>
+          
+          <!-- Se agregó editForm.invalid para evitar que el usuario envíe el form vacío o con errores -->
+          <button mat-flat-button color="primary" type="submit" [disabled]="editForm.invalid || isSaving">
+            {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
+          </button>
+        </div>
+      </form>
+    }
+    
+  } @else {
+    <div class="edit-user-card empty-state">
+      <p>No hay una sesión activa.</p>
+    </div>
+  }
+</section>

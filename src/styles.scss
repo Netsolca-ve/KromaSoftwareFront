@@ -5,8 +5,341 @@
   
 }
 
+body {
+  background: #f7f8ff;
+  transition: background 0.2s ease;
+}
+
+body:has(.app-layout.dark-mode) {
+  background: #111827;
+}
+
 .custom-dialog-container .mdc-dialog__surface {
   padding: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
+}
+
+body.dark-mode {
+  color-scheme: dark;
+}
+
+body.dark-mode .page-content,
+body.dark-mode .module-page,
+body.dark-mode .agenda-page,
+body.dark-mode .edit-user-page {
+  color: #f3f4f6;
+}
+
+body.dark-mode .module-heading h1,
+body.dark-mode .agenda-toolbar h1,
+body.dark-mode .edit-user-header h1,
+body.dark-mode .calendar-heading h2,
+body.dark-mode .form-heading h2,
+body.dark-mode .dialog-header h2 {
+  color: #f3f4f6;
+}
+
+body.dark-mode .module-heading p,
+body.dark-mode .agenda-legend,
+body.dark-mode .edit-user-header p,
+body.dark-mode .eyebrow,
+body.dark-mode .module-heading .eyebrow,
+body.dark-mode .calendar-heading span {
+  color: #aab4c5;
+}
+
+body.dark-mode .entry-form,
+body.dark-mode .list-card,
+body.dark-mode .catalog-card,
+body.dark-mode .employee-card,
+body.dark-mode .total-box,
+body.dark-mode .calendar-panel,
+body.dark-mode .edit-user-card,
+body.dark-mode .appointment-form,
+body.dark-mode .appointment-form-inner,
+body.dark-mode .confirmation-dialog {
+  border-color: #374151;
+  background: #1f2937;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 20%);
+}
+
+body.dark-mode .entry-form input,
+body.dark-mode .entry-form select,
+body.dark-mode .form-grid input,
+body.dark-mode .form-grid select,
+body.dark-mode .search-field input,
+body.dark-mode .date-picker,
+body.dark-mode .login-card input,
+body.dark-mode .password-field input {
+  border-color: #4b5563;
+  background: #273449;
+  color: #f3f4f6;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #8f9bad;
+}
+
+body.dark-mode .entry-form label,
+body.dark-mode .form-grid label,
+body.dark-mode .search-field,
+body.dark-mode .list-row small,
+body.dark-mode .payment-row small,
+body.dark-mode .employee-info small,
+body.dark-mode .service-details,
+body.dark-mode .empty-state,
+body.dark-mode .readonly-data,
+body.dark-mode .form-message {
+  color: #aab4c5;
+}
+
+body.dark-mode .list-row strong,
+body.dark-mode .payment-row strong,
+body.dark-mode .employee-info strong,
+body.dark-mode .catalog-card h3,
+body.dark-mode .catalog-card p,
+body.dark-mode .total-box strong,
+body.dark-mode .readonly-data strong {
+  color: #f3f4f6;
+}
+
+body.dark-mode .list-row,
+body.dark-mode .payment-row,
+body.dark-mode .employee-card,
+body.dark-mode .catalog-card,
+body.dark-mode .table-head,
+body.dark-mode .agenda-toolbar,
+body.dark-mode .calendar-heading {
+  border-color: #374151;
+}
+
+body.dark-mode .date-controls,
+body.dark-mode .view-selector,
+body.dark-mode .search-field,
+body.dark-mode .week-label {
+  border-color: #374151;
+  background: #273449;
+  color: #aab4c5;
+}
+
+body.dark-mode .date-controls button,
+body.dark-mode .view-selector button,
+body.dark-mode .search-field input {
+  color: #d1d5db;
+}
+
+body.dark-mode .date-controls button:hover,
+body.dark-mode .view-selector button:hover {
+  background: #374151;
+}
+
+body.dark-mode .agenda-grid,
+body.dark-mode .barber-column,
+body.dark-mode .barber-header {
+  border-color: #374151;
+}
+
+body.dark-mode .barber-header {
+  background: #273449;
+}
+
+body.dark-mode .barber-header h2,
+body.dark-mode .barber-header span,
+body.dark-mode .appointment-card h3,
+body.dark-mode .service-details strong {
+  color: #f3f4f6;
+}
+
+body.dark-mode .appointment-card {
+  border-color: #4b5563;
+  background: #273449;
+  color: #f3f4f6;
+}
+
+body.dark-mode .appointment-card:hover {
+  background: #334155;
+}
+
+body.dark-mode .free-slot,
+body.dark-mode .empty-slot {
+  border-color: #4b5563;
+  background: #1f2937;
+  color: #aab4c5;
+}
+
+body.dark-mode .calendar-container,
+body.dark-mode .fc-theme-standard td,
+body.dark-mode .fc-theme-standard th,
+body.dark-mode .fc-scrollgrid,
+body.dark-mode .fc-scrollgrid-section > td {
+  border-color: #374151;
+}
+
+body.dark-mode .fc,
+body.dark-mode .fc .fc-col-header-cell-cushion,
+body.dark-mode .fc .fc-daygrid-day-number,
+body.dark-mode .fc .fc-timegrid-slot-label-cushion {
+  color: #d1d5db;
+}
+
+body.dark-mode .fc .fc-timegrid-slot,
+body.dark-mode .fc .fc-timegrid-col,
+body.dark-mode .fc .fc-daygrid-day {
+  background: #1f2937;
+}
+
+body.dark-mode .fc .fc-toolbar-title {
+  color: #f3f4f6;
+}
+
+body.dark-mode .fc .fc-button {
+  border-color: #4b5563;
+  background: #273449;
+  color: #f3f4f6;
+}
+
+body.dark-mode .fc .fc-button:hover,
+body.dark-mode .fc .fc-button-primary:not(:disabled).fc-button-active {
+  border-color: #4b5563;
+  background: #374151;
+}
+
+body.dark-mode .modal-backdrop,
+body.dark-mode .profile-modal-backdrop {
+  background: rgb(0 0 0 / 58%);
+}
+
+body.dark-mode .modal-close,
+body.dark-mode .close-button {
+  color: #aab4c5;
+}
+
+body.dark-mode .login-page {
+  background: #111827;
+}
+
+body.dark-mode .login-card {
+  border-color: #374151;
+  background: #1f2937;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 30%);
+}
+
+body.dark-mode .login-card h1,
+body.dark-mode .brand-name,
+body.dark-mode .subtitle,
+body.dark-mode .branch-heading,
+body.dark-mode .password-heading,
+body.dark-mode .forgot-password,
+body.dark-mode .register {
+  color: #f3f4f6;
+}
+
+body.dark-mode .login-card input {
+  color: #f3f4f6;
+}
+
+body.dark-mode .profile-details {
+  background: #273449;
+  color: #d1d5db;
+}
+
+body.dark-mode .profile-modal h2,
+body.dark-mode .profile-modal .profile-email {
+  color: #f3f4f6;
+}
+
+body.dark-mode .mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: #4b5563;
+  --mdc-outlined-text-field-hover-outline-color: #9ca3af;
+  --mdc-outlined-text-field-focus-outline-color: #93c5fd;
+  --mdc-outlined-text-field-label-text-color: #aab4c5;
+  --mdc-outlined-text-field-input-text-color: #f3f4f6;
+  --mdc-outlined-text-field-caret-color: #f3f4f6;
+}
+
+body.dark-mode .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background: #273449;
+}
+
+body.dark-mode .mat-mdc-form-field .mdc-text-field__input {
+  color: #f3f4f6;
+}
+
+body:not(.dark-mode) .mat-mdc-form-field {
+  --mdc-outlined-text-field-label-text-color: #303545;
+  --mdc-outlined-text-field-input-text-color: #303545;
+  --mdc-outlined-text-field-outline-color: #b8c0cf;
+  --mdc-outlined-text-field-hover-outline-color: #667085;
+  --mdc-outlined-text-field-focus-outline-color: #303545;
+}
+
+body:not(.dark-mode) .mdc-text-field__input,
+body:not(.dark-mode) .mat-mdc-form-field label,
+body:not(.dark-mode) .mat-mdc-form-field .mdc-floating-label {
+  color: #303545 !important;
+}
+
+body.dark-mode .entry-form label,
+body.dark-mode .form-grid label,
+body.dark-mode .login-card label,
+body.dark-mode .password-heading,
+body.dark-mode .search-field,
+body.dark-mode .mat-mdc-form-field label,
+body.dark-mode .mat-mdc-form-field .mdc-floating-label,
+body.dark-mode .mat-mdc-form-field .mdc-floating-label--float-above {
+  color: #f3f4f6 !important;
+}
+
+body.dark-mode .entry-form input,
+body.dark-mode .entry-form select,
+body.dark-mode .form-grid input,
+body.dark-mode .form-grid select,
+body.dark-mode .login-card input,
+body.dark-mode .password-field input,
+body.dark-mode .search-field input,
+body.dark-mode .date-picker {
+  border-color: #4b5563 !important;
+  background: #273449 !important;
+  color: #f3f4f6 !important;
+  caret-color: #f3f4f6;
+}
+
+body.dark-mode .mat-mdc-form-field .mdc-text-field__input,
+body.dark-mode .mat-mdc-form-field input {
+  color: #f3f4f6 !important;
+  caret-color: #f3f4f6;
+}
+
+body.dark-mode .mat-mdc-form-field .mdc-notched-outline__leading,
+body.dark-mode .mat-mdc-form-field .mdc-notched-outline__notch,
+body.dark-mode .mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: #4b5563 !important;
+}
+
+body.dark-mode .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+body.dark-mode .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+body.dark-mode .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #93c5fd !important;
+}
+
+body.dark-mode .profile-modal {
+  border-color: #374151 !important;
+  background: #1f2937 !important;
+  color: #f3f4f6;
+}
+
+body.dark-mode .profile-modal h2,
+body.dark-mode .profile-modal .profile-email {
+  color: #f3f4f6 !important;
+}
+
+body.dark-mode .profile-modal .profile-role,
+body.dark-mode .profile-modal .profile-details {
+  color: #aab4c5 !important;
+}
+
+body.dark-mode .profile-modal .profile-details {
+  background: #273449 !important;
 }

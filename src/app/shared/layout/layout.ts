@@ -15,6 +15,9 @@ import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LoadingService } from '../../@core/services/loading.service';
 import { UiModalService } from '../../@core/services/ui-modal.service';
+import { Auth } from '../../@core/services/auth';
+import { Userlayout } from './components/userlayout/userlayout';
+
 
 @Component({
   imports: [
@@ -23,6 +26,7 @@ import { UiModalService } from '../../@core/services/ui-modal.service';
     RouterLinkActive,
     MatIconModule,
     MatProgressSpinnerModule,
+    Userlayout,
   ],
   selector: 'app-layout',
   styleUrl: './layout.scss',
@@ -30,7 +34,8 @@ import { UiModalService } from '../../@core/services/ui-modal.service';
 })
 export class Layout {
   showProfile = false;
-
+  isDarkMode = localStorage.getItem('theme') === 'dark';
+  Auth = inject(Auth);
   private readonly destroyRef = inject(DestroyRef);
 
   constructor(
@@ -38,6 +43,7 @@ export class Layout {
     readonly loadingService: LoadingService,
     private readonly uiModalService: UiModalService,
   ) {
+    this.applyTheme();
     this.router.events
       .pipe(
         filter(
@@ -61,5 +67,23 @@ export class Layout {
   openNewAppointment(): void {
     this.uiModalService.requestNewAppointment();
     if (!this.router.url.startsWith('/home')) this.router.navigate(['/home']);
+  }
+
+  toggleProfile(): void {
+    this.showProfile = !this.showProfile;
+  }
+
+  closeProfile(): void {
+    this.showProfile = false;
+  }
+
+  setTheme(isDarkMode: boolean): void {
+    this.isDarkMode = isDarkMode;
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    this.applyTheme();
+  }
+
+  private applyTheme(): void {
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
   }
 }

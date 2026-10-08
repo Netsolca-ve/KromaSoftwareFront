@@ -1,4 +1,4 @@
-<div class="app-layout">
+<div class="app-layout" [class.dark-mode]="isDarkMode">
   <aside class="sidebar">
     
     <div class="brand">KROMA SOFTWARE</div>
@@ -44,10 +44,22 @@
     <div class="sidebar-bottom">
       <div class="mode-selector">
         <span>MODO</span>
-        <button type="button">
+        <button
+          type="button"
+          aria-label="Activar modo claro"
+          [attr.aria-pressed]="!isDarkMode"
+          [class.selected]="!isDarkMode"
+          (click)="setTheme(false)"
+        >
           <mat-icon>light_mode</mat-icon>
         </button>
-        <button type="button">
+        <button
+          type="button"
+          aria-label="Activar modo oscuro"
+          [attr.aria-pressed]="isDarkMode"
+          [class.selected]="isDarkMode"
+          (click)="setTheme(true)"
+        >
           <mat-icon>dark_mode</mat-icon>
         </button>
       </div>
@@ -58,8 +70,8 @@
         </div>
 
         <div>
-          <strong>Carlos Medina</strong>
-          <small>Master Barber</small>
+          <h2>Hola, {{ Auth.currentUser()?.nombre || 'Usuario' }}</h2>
+          <small>{{ Auth.currentUser()?.rol || 'Sin rol' }}</small>
         </div>
       </div>
     </div>
@@ -78,7 +90,13 @@
 
       
 
-      <button class="profile-button" type="button" aria-label="Abrir perfil">
+      <button
+        class="profile-button"
+        type="button"
+        aria-label="Abrir perfil"
+        [attr.aria-expanded]="showProfile"
+        (click)="toggleProfile()"
+      >
         <mat-icon>account_circle</mat-icon>
       </button>
     </header>
@@ -89,3 +107,25 @@
   </div>
 </div>
 
+@if (showProfile) {
+  <div class="profile-modal-backdrop" (click)="closeProfile()">
+    <section
+      class="profile-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Perfil de usuario"
+      (click)="$event.stopPropagation()"
+    >
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Cerrar perfil"
+        (click)="closeProfile()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <app-userlayout></app-userlayout>
+    </section>
+  </div>
+}

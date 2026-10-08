@@ -1,0 +1,201 @@
+.user-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #edf0f7;
+}
+
+.user-avatar {
+  display: grid;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: #111827;
+  color: #fff;
+}
+
+.user-avatar mat-icon {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+}
+
+.user-heading {
+  min-width: 0;
+}
+
+.user-heading h2 {
+  overflow: hidden;
+  margin: 0;
+  color: #151a28;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-heading span {
+  display: inline-block;
+  margin-top: 4px;
+  color: #667085;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.user-details {
+  display: grid;
+  gap: 13px;
+  padding-top: 16px;
+}
+
+.user-detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.user-detail > mat-icon {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: #667085;
+  font-size: 18px;
+}
+
+.user-detail div {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.user-detail small {
+  color: #8a93a6;
+  font-size: 10px;
+}
+
+.user-detail strong {
+  overflow: hidden;
+  color: #303545;
+  font-size: 12px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit-user-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  height: 36px;
+  margin-top: 18px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: #111827;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.edit-user-button:hover {
+  background: #293449;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  height: 36px;
+  margin-top: 8px;
+  border: 1px solid #d0d5dd;
+  border-radius: 5px;
+  background: transparent;
+  color: #b42318;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #fef3f2;
+}
+
+.edit-user-button mat-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.logout-button mat-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.empty-user {
+  margin: 0;
+  color: #667085;
+  font-size: 12px;
+  text-align: center;
+}
+
+:host-context(body.dark-mode) .user-card-header {
+  border-color: #374151;
+}
+
+:host-context(body.dark-mode) .user-heading h2 {
+  color: #f3f4f6;
+}
+
+:host-context(body.dark-mode) .user-heading span,
+:host-context(body.dark-mode) .user-detail small,
+:host-context(body.dark-mode) .user-detail > mat-icon,
+:host-context(body.dark-mode) .empty-user {
+  color: #aab4c5;
+}
+
+:host-context(body.dark-mode) .user-detail strong {
+  color: #e5e7eb;
+}
+
+:host-context(body.dark-mode) .edit-user-button {
+  background: #111827;
+  color: #fff;
+}
+
+:host-context(body.dark-mode) .edit-user-button:hover {
+  background: #374151;
+}
+
+:host-context(body.dark-mode) .logout-button {
+  border-color: #4b5563;
+  color: #fca5a5;
+}
+
+:host-context(body.dark-mode) .logout-button:hover {
+  background: #3f2525;
+}
+
+:host-context(body:not(.dark-mode)) .user-heading h2,
+:host-context(body:not(.dark-mode)) .user-detail strong {
+  color: #151a28;
+}
+
+:host-context(body:not(.dark-mode)) .user-heading span,
+:host-context(body:not(.dark-mode)) .user-detail small,
+:host-context(body:not(.dark-mode)) .user-detail > mat-icon {
+  color: #667085;
+}

@@ -51,6 +51,10 @@ export const routes: Routes = [
         path: 'schedules',
         loadComponent: () => import('./pages/schedules/schedules').then((m) => m.Schedules),
       },
+      {
+        path: 'edit-user',
+        loadComponent: () => import('./pages/edit-user/edit-user').then((m) => m.EditUser),
+      },
     ],
   },
 ];

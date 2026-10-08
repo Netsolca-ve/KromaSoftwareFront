@@ -34,30 +34,39 @@ export class Login {
 
 
 
- loginForm = this.fb.group({
-
-  correo:[ ['', Validators.required, Validators.email]],
-  contrasena: [['', Validators.required]],
-
+ loginForm = this.fb.nonNullable.group({
+  correo: ['', [Validators.required, Validators.email]],
+  contrasena: ['', Validators.required],
  })
 
 
  onLogin()
 {
-  if(this.loginForm.valid)
-  {
-    this.authService.login(this.loginForm.value as any).subscribe({
-      next: (response) => {
-        console.log('Login successful:', response);
-        this.router.navigate(['/home']);
-      },
-      error: (error) => {
-        console.error('Login failed:', error);
-        this.router.navigate(['/login']);
-      },
-    })
-       
-  }
+ if (this.loginForm.invalid) {
+   this.loginForm.markAllAsTouched();
+   return;
+ }
+
+ this.errorMessage = '';
+ this.authService.logout();
+
+ const credenciales = {
+   correo: this.loginForm.controls.correo.value.trim(),
+   contrasena: this.loginForm.controls.contrasena.value,
+ };
+
+ this.authService.login(credenciales).subscribe({
+   next: () => {
+     this.router.navigate(['/home']);
+   },
+   error: (error) => {
+     console.error('Login failed:', error);
+     this.errorMessage =
+       error?.status === 401 || error?.status === 403
+         ? 'El correo o la contraseña son incorrectos.'
+         : 'No se pudo iniciar sesión. Verifica que el servidor esté disponible.';
+   },
+ });
 }
   
 
