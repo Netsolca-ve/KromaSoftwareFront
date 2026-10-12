@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Registrar Nueva Cita</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="citaForm" class="formulario-modal" style="display: flex; flex-direction: column; gap: 15px; margin-top: 10px;">
+    
+    
+
+    <!-- Select Reactivo para Servicios -->
+    <mat-form-field appearance="outline">
+      <mat-label>Selecciona un Servicio</mat-label>
+      <mat-select formControlName="servicio_id">
+        @for (servicio of serviciosService.listaServicios(); track servicio.id) {
+          <mat-option [value]="servicio.id">
+            {{ servicio.nombre }} - {{ servicio.precio }} USDT
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Select Reactivo para Barberos -->
+    <mat-form-field appearance="outline">
+      <mat-label>Asignar a Barbero</mat-label>
+      <mat-select formControlName="barbero_id">
+        @for (barbero of empleadosService.listaEmpleados(); track barbero.id) {
+          <mat-option [value]="barbero.id">
+            {{ barbero.nombre }} ({{ barbero.cargo }})
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <!-- Botón para cerrar sin guardar -->
+  <button mat-button mat-dialog-close>Cancelar</button>
+  
+  <!-- Botón para ejecutar el Submit -->
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="citaForm.invalid">
+    Agendar
+  </button>
+</mat-dialog-actions>

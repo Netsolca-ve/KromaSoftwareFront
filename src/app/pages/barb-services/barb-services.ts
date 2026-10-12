@@ -1,18 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { Servicios } from '../../@core/services/servicios';
 
 @Component({
-  imports: [CommonModule, FormsModule, MatIconModule],
+  imports: [CommonModule, FormsModule, MatIconModule, ReactiveFormsModule],
   selector: 'app-barb-services',
   styleUrl: './barb-services.scss',
   templateUrl: './barb-services.html',
 })
-export class BarbServices {
-  serviceName = '';
-  servicePrice: number | null = null;
-  services = [{ name: 'Corte de cabello', duration: 45, price: 5 }, { name: 'Corte con barba', duration: 60, price: 10 }];
+export class BarbServices implements OnInit {
+  private fb = inject(FormBuilder);
+  public serviciosService = inject(Servicios);
 
-  addService(): void { if (this.serviceName.trim() && this.servicePrice) { this.services.push({ name: this.serviceName.trim(), duration: 45, price: this.servicePrice }); this.serviceName = ''; this.servicePrice = null; } }
+  serviciosForm!:  FormGroup;
+  ngOnInit(): void {
+    this.serviciosForm= this.fb.group({
+      nombre: ['', [Validators.required]],
+      precio: ['', [Validators.required]],
+    })
+
+    console.log('Formulario de servicios inicializado:', this.serviciosForm.value);
+    this.serviciosService.cargarServicios().subscribe({
+      error: (error) => {
+        console.error('Error al cargar los servicios:', error);
+      }
+    })
+    
+  }
+
+   onSubmit(): void {
+
+    if(this.serviciosForm.invalid)return;
+
+    this.serviciosService.agregarServicio(this.serviciosForm.value).subscribe({
+      next: (response) => {
+        console.log('Servicio agregado:', response);
+        this.serviciosForm.reset();
+      },
+      error: (error) => {
+        console.error('Error al agregar el servicio:', error);
+      }
+    })
+
+   }
+
+
+
 }

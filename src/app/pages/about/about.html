@@ -3,24 +3,32 @@
     <div>
       <h1>Empleados</h1>
     </div>
-    <strong class="count-badge">{{ employees.length }} barberos</strong>
+    <strong class="count-badge">{{ empleadosService.listaEmpleados().length }} barberos</strong>
   </header>
-  <form class="entry-form" (ngSubmit)="addEmployee()">
-    <input [(ngModel)]="name" name="name" placeholder="Nombre del barbero" required />
-    <button type="submit"><mat-icon>person_add</mat-icon>Agregar empleado</button>
+
+  <form class="entry-form" [formGroup]="empleadoForm" (ngSubmit)="onSubmit()">
+    <input formControlName="nombre" placeholder="Nombre del barbero" />
+    <button type="submit" [disabled]="empleadoForm.invalid">
+      <mat-icon>person_add</mat-icon>Agregar empleado
+    </button>
   </form>
+
   <div class="employee-grid">
-    @for (employee of employees; track employee.name) {
-    <article class="employee-card">
-      <div class="employee-avatar">{{ employee.name.charAt(0) }}</div>
-      <div class="employee-info">
-        <strong>{{ employee.name }}</strong>
-        <small>{{ employee.role }}</small>
-      </div>
-      <button type="button" [class.inactive]="!employee.active" (click)="toggleEmployee(employee)">
-        {{ employee.active ? 'Activo' : 'Inactivo' }}
-      </button>
-    </article>
+    @for (empleado of empleadosService.listaEmpleados(); track empleado.id) {
+      <article class="employee-card">
+        <div class="employee-avatar">
+          {{ obtenerInicial(empleado.nombre) }}
+        </div>
+
+        <div class="employee-info">
+          <strong>{{ empleado.nombre }}</strong>
+          <small>{{ empleado.cargo }}</small>
+        </div>
+
+        <button type="button">Activo</button>
+      </article>
+    } @empty {
+      <p class="empty-state">Aún no hay barberos registrados. Agrega el primero arriba.</p>
     }
   </div>
 </section>

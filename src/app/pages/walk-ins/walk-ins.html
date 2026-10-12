@@ -1,28 +1,21 @@
 <section class="module-page">
   <header class="module-heading">
     <div>
+      <p class="eyebrow">ATENCIÓN EN EL LOCAL</p>
       <h1>Walk ins</h1>
+      <p>Registra y organiza las citas de clientes que llegan sin reserva.</p>
     </div>
+    <strong class="count-badge">0 clientes en espera</strong>
   </header>
-  <form class="entry-form" (ngSubmit)="addToQueue()">
-    <input [(ngModel)]="clientName" name="clientName" placeholder="Nombre del cliente" required />
-    <select [(ngModel)]="service" name="service">
-      <option>Corte clásico</option>
-      <option>Corte & Barba</option>
-      <option>Perfilado</option>
-    </select>
-    <button type="submit"><mat-icon>person_add</mat-icon>Agregar a la cola</button>
-  </form>
+
+  <div class="entry-form">
+    <button type="button" (click)="abrirModalCita()">
+      <mat-icon>person_add</mat-icon>
+      Registrar cliente sin cita
+    </button>
+  </div>
+
   <div class="list-card">
-    <article class="list-row" *ngFor="let client of queue; let index = index">
-      <span class="number">{{ index + 1 }}</span>
-      <div>
-        <strong>{{ client.name }}</strong><small>{{ client.service }} · {{ client.time }}</small>
-      </div>
-      <button type="button" (click)="removeFromQueue(client.id)" aria-label="Retirar de la cola">
-        <mat-icon>check</mat-icon>
-      </button>
-    </article>
-    <p class="empty-state" *ngIf="!queue.length">No hay clientes esperando.</p>
+    <p class="empty-state">No hay clientes esperando.</p>
   </div>
 </section>

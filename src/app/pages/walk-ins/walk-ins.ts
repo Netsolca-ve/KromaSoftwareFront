@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateWalkIns } from './components/create-walk-ins/create-walk-ins';
 
 @Component({
   imports: [CommonModule, FormsModule, MatIconModule],
@@ -10,20 +12,19 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './walk-ins.html',
 })
 export class WalkIns {
-  clientName = '';
-  service = 'Corte clásico';
-  queue = [
-    { id: 1, name: 'Nicolás Castro', service: 'Corte Tijera', time: '12:30' },
-    { id: 2, name: 'Sebastián Lagos', service: 'Corte Niño Moderno', time: '12:45' },
-  ];
+  private dialog = inject(MatDialog);
 
-  addToQueue(): void {
-    if (!this.clientName.trim()) return;
-    this.queue.push({ id: Date.now(), name: this.clientName.trim(), service: this.service, time: 'Ahora' });
-    this.clientName = '';
-  }
+  abrirModalCita() {
+    const dialogRef = this.dialog.open(CreateWalkIns, {
+      width: '400px',
+      disableClose: true // Evita que se cierre haciendo clic afuera si así lo deseas
+    });
 
-  removeFromQueue(id: number): void {
-    this.queue = this.queue.filter((client) => client.id !== id);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('¡Cita creada con éxito!');
+        // Aquí podrías mostrar un pequeño Toast / Snackbar de éxito
+      }
+    });
   }
 }
